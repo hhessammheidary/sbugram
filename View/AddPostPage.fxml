@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPostPageController">
+   <children>
+      <TextField fx:id="titleField" layoutX="35.0" layoutY="84.0" prefHeight="35.0" prefWidth="150.0" promptText="title" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
+      <TextArea fx:id="descriptionField" layoutX="35.0" layoutY="311.0" prefHeight="100.0" prefWidth="220.0" promptText="description" />
+      <ImageView fx:id="postImage" fitHeight="165.0" fitWidth="220.0" layoutX="35.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox layoutY="555.0" prefHeight="45.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="timeLineButton" mnemonicParsing="false" onAction="#goToTimeLinePage" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/homeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#goToAddPostPage" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/postIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="directMessageButton" mnemonicParsing="false" onAction="#goToDirectMessage" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../directMessageIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="profileButton" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/profileIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Button fx:id="addPostPhotoButton" layoutX="183.0" layoutY="428.0" mnemonicParsing="false" onAction="#addPostPhoto" style="-fx-background-color: #323232;" text="add photo" textFill="WHITE" />
+      <Button fx:id="publishButton" layoutX="102.0" layoutY="480.0" mnemonicParsing="false" onAction="#publishPost" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #323232;" text="publish" textFill="WHITE" />
+   </children>
+</Pane>
