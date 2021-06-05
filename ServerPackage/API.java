@@ -1,4 +1,4 @@
-package Server;
+package ServerPackage;
 
 import Commen.Commands;
 import Commen.User;
@@ -11,7 +11,7 @@ public class API {
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
 
         String username2check = (String) income.get("username");
-        User user = Serverr.users.get(username2check);
+        User user = Server.users.get(username2check);
         Boolean exists = (user!=null);
         Map<String,Object> answer = new HashMap<>();
         answer.put("answer" , exists);
@@ -25,7 +25,7 @@ public class API {
         String password = (String)income.get("password");
         Map<String , Object> answer=new HashMap<>();
 
-        User user=Serverr.users.get(username);
+        User user=Server.users.get(username);
         answer.put("command" , Commands.Login);
         answer.put("exists" , (user!=null));
         if(user==null){
@@ -43,7 +43,7 @@ public class API {
         User newUser = (User)income.get("user");
         String username = newUser.getUsername();
 
-        Serverr.users.put(username , newUser);
+        Server.users.put(username , newUser);
         DataBaseManager.getInstance().updateDataBase();
         answer.put("command" , Commands.SingUp);
         answer.put("answer" , Boolean.TRUE);

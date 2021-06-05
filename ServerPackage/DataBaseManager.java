@@ -1,4 +1,4 @@
-package Server;
+package ServerPackage;
 
 import Commen.User;
 
@@ -17,12 +17,12 @@ public class DataBaseManager {
         try {
             FileInputStream fileInputStream=new FileInputStream(DataBaseManager.userFile);
             ObjectInputStream objectInputStream=new ObjectInputStream(fileInputStream);
-            Serverr.users = new ConcurrentHashMap<>((ConcurrentHashMap<String, User>)objectInputStream.readObject());
+            Server.users = new ConcurrentHashMap<>((ConcurrentHashMap<String, User>)objectInputStream.readObject());
             objectInputStream.close();
             fileInputStream.close();
         }
         catch(EOFException | StreamCorruptedException e){
-            Serverr.users = new ConcurrentHashMap<>();
+            Server.users = new ConcurrentHashMap<>();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class DataBaseManager {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(userFile);
             ObjectOutputStream objToFile = new ObjectOutputStream(fileOutputStream);
-            objToFile.writeObject(Serverr.users); //writing profiles
+            objToFile.writeObject(Server.users); //writing profiles
             objToFile.close();
             fileOutputStream.close();
 

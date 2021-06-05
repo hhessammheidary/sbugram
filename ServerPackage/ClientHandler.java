@@ -1,4 +1,4 @@
-package Server;
+package ServerPackage;
 
 import Commen.Commands;
 
