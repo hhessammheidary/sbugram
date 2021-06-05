@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
 
-public class Serverr {
+public class Server {
     private static final int port=8080;
     private static final boolean isServerUp=true;
     public static Map<String , User> users=null;
