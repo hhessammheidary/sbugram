@@ -1,7 +1,7 @@
-package Controller;
+package ClientPackage.Controller;
 
-import Model.PageLoader;
-import Model.Post;
+import ClientPackage.Model.PageLoader;
+import Commen.Post;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;

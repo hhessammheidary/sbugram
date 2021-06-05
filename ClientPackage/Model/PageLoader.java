@@ -1,6 +1,6 @@
-package Model;
+package ClientPackage.Model;
 
-import Controller.PostItemController;
+import ClientPackage.Controller.PostItemController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

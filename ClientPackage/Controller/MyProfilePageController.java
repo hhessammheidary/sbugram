@@ -1,4 +1,4 @@
-package Controller;
+package ClientPackage.Controller;
 
 public class MyProfilePageController {
 }

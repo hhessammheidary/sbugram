@@ -1,4 +1,4 @@
-package Model;
+package ClientPackage.Model;
 
 import javafx.application.Application;
 

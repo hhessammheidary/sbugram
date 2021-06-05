@@ -1,6 +1,6 @@
-package Controller;
+package ClientPackage.Controller;
 
-import Model.PageLoader;
+import ClientPackage.Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
