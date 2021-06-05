@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.PostItemController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,6 +25,14 @@ public class PageLoader {
         stage.getIcons().add(new Image(Paths.get("C:\\Users\\HP\\Desktop\\projeAP\\87390.png").toUri().toString()));
     }
 
+    public void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    public static Stage getPrimaryStage() {
+        return stage;
+    }
+
     public Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fxml + ".fxml"));
         return fxmlLoader.load();
@@ -35,4 +44,9 @@ public class PageLoader {
         stage.show();
     }
 
+    public void load(String fxml, Object postItemController) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fxml + ".fxml"));
+        fxmlLoader.setController(postItemController);
+        fxmlLoader.load();
+    }
 }

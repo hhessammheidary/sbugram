@@ -23,7 +23,6 @@ public class AddPostPageController {
     public Button addPostPhotoButton;
     public Button publishButton;
     final FileChooser fileChooser=new FileChooser();
-    public Button directMessageButton;
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("TimeLine");
@@ -33,11 +32,8 @@ public class AddPostPageController {
         new PageLoader().load("AddPostPage");
     }
 
-    public void goToProfilePage(ActionEvent actionEvent) {
-    }
-
-    public void goToDirectMessage(ActionEvent actionEvent) throws IOException {
-        new PageLoader().load("x");
+    public void goToProfilePage(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("ProfilePage");
     }
 
     public void addPostPhoto(ActionEvent actionEvent) {
@@ -52,5 +48,6 @@ public class AddPostPageController {
     }
 
     public void publishPost(ActionEvent actionEvent) {
+
     }
 }

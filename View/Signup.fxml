@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SigninController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignupController">
    <children>
       <TextField fx:id="lastnameField" layoutX="23.0" layoutY="211.0" prefHeight="33.0" prefWidth="208.0" promptText="last name" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
       <TextField fx:id="usernameField" layoutX="23.0" layoutY="316.0" prefHeight="33.0" prefWidth="208.0" promptText="username" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />

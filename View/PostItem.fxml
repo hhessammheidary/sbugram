@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="usernameLabel" layoutX="21.0" layoutY="71.0" text="username" textFill="WHITE" />
+      <ImageView fx:id="profileImage" fitHeight="60.0" fitWidth="60.0" layoutX="21.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/HP/Desktop/projeAP/PngItem_1468479.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="titleLabel" layoutX="101.0" layoutY="36.0" prefHeight="23.0" prefWidth="34.0" text="title" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="likePostButton" layoutX="162.0" layoutY="30.0" mnemonicParsing="false" onAction="#likePost" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/HP/Desktop/projeAP/LikeIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="repostButton" layoutX="231.0" layoutY="30.0" mnemonicParsing="false" onAction="#repostPost" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;" text="Repost" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

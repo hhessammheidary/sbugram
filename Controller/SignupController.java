@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SigninController {
+public class SignupController {
     @FXML
     public TextField lastnameField;
     public TextField usernameField;
