@@ -2,46 +2,44 @@ package Commen;
 
 import javafx.scene.image.Image;
 
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.*;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Post {
-    private String writer;
-    private String title;
-    private String description;
-    private int like=0;
-    private int repost=0;
-    private Image image;
-    public static List<String> comments=new ArrayList<>();
-    private String date=LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+public class Post implements Serializable , Comparable {
+    private final String writer;
+    private final String title;
+    private final String description;
+    private final LocalDateTime dateWithTime;
+    private final LocalDate date;
+    private int like = 0;
+    private int repost = 0;
+    private final Image image;
+    public static CopyOnWriteArrayList<String> comments;
+
+    public Post(String writer , String title , String description , Image image) {
+        this.writer=writer;
+        this.title=title;
+        this.description=description;
+        this.image=image;
+        this.dateWithTime=LocalDateTime.now();
+        this.date=LocalDate.now();
+    }
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getWriter() {
         return writer;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getLike() {
@@ -64,12 +62,12 @@ public class Post {
         return image;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public String getDate() {
-        return date;
+    public LocalDateTime getDateWithTime() {
+        return dateWithTime;
     }
 
     public boolean equals(Object o){
@@ -80,6 +78,11 @@ public class Post {
             return false;
         }
         Post post=(Post) o;
-        return (Objects.equals(title , ((Post) o).title) && Objects.equals(description , ((Post) o).description));
+        return (Objects.equals(getTitle() , ((Post) o).getTitle()) && Objects.equals(getDescription() , ((Post) o).getDescription()));
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getDateWithTime().compareTo(((Post) o).getDateWithTime());
     }
 }

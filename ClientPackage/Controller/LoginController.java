@@ -1,6 +1,9 @@
 package ClientPackage.Controller;
 
+import ClientPackage.Model.API;
+import ClientPackage.Model.ClientToServer;
 import ClientPackage.Model.PageLoader;
+import Commen.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -26,27 +29,29 @@ public class LoginController {
 
     public void login(ActionEvent actionEvent) throws IOException {
         String username=usernameField.getText();
-        String password;
+        String password = null;
         boolean correctId=false;
         boolean correctPass=false;
+        User user= API.login(username , password);
+
+        if (!ClientToServer.isConnected()){
+            System.out.println("not connected");;
+            return;
+        }
         if(passwordField.isVisible()){
             password=passwordField.getText();
         }
         else {
             password=passwordVisible.getText();
         }
-        if(!username.equals("hessam")){
+        if(username.isEmpty() || password.isEmpty() || user==null){
             userNotFoundLabel.setVisible(true);
-        }
-        else {
-            userNotFoundLabel.setVisible(false);
-            correctId=true;
-        }
-        if(!password.equals("1234")){
             wrongPasswordLabel.setVisible(true);
         }
         else {
+            userNotFoundLabel.setVisible(false);
             wrongPasswordLabel.setVisible(false);
+            correctId=true;
             correctPass=true;
         }
         if(correctId && correctPass){

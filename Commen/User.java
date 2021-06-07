@@ -1,14 +1,14 @@
 package Commen;
 
-import Model.Post;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User implements  Serializable {
     private final String username;
     private String password;
     private String name;
@@ -79,10 +79,5 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(username);
     }
 }

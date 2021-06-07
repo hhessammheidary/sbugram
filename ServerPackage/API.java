@@ -20,6 +20,22 @@ public class API {
         return answer;
     }
 
+    public static Map<String,Object> signUp(Map<String,Object> income){
+        Map<String,Object> answer = new HashMap<>();
+        User newUser = (User)income.get("user");
+        String username = newUser.getUsername();
+
+        Server.users.put(username , newUser);
+        DataBaseManager.getInstance().updateDataBase();
+        answer.put("command" , Commands.SingUp);
+        answer.put("answer" , Boolean.TRUE);
+        System.out.println(newUser.getUsername() + " register");
+        System.out.println(newUser.getUsername() + " Login");
+        System.out.println("time : " + LocalDateTime.now());
+
+        return answer;
+    }
+
     public static Map<String , Object> login(Map<String , Object> income){
         String username = (String)income.get("username");
         String password = (String)income.get("password");
@@ -33,22 +49,6 @@ public class API {
         }
         answer.put("answer" , user);
         System.out.println(user.getUsername() + " : login");
-        System.out.println("time : " + LocalDateTime.now());
-
-        return answer;
-    }
-
-    public static Map<String,Object> signUp(Map<String,Object> income){
-        Map<String,Object> answer = new HashMap<>();
-        User newUser = (User)income.get("user");
-        String username = newUser.getUsername();
-
-        Server.users.put(username , newUser);
-        DataBaseManager.getInstance().updateDataBase();
-        answer.put("command" , Commands.SingUp);
-        answer.put("answer" , Boolean.TRUE);
-        System.out.println(newUser.getUsername() + " register");
-        System.out.println(newUser.getUsername() + " Login");
         System.out.println("time : " + LocalDateTime.now());
 
         return answer;

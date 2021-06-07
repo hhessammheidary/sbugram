@@ -18,7 +18,7 @@ public class TimeLineController {
 
     public static ListView<Post> postlist=new ListView<>();
     public static ArrayList<Post> posts=new ArrayList<>();
-    public Post currentPost=new Post();
+    //public Post currentPost=new Post();
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("TimeLine");
