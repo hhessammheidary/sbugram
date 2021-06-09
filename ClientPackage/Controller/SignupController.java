@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,7 +35,7 @@ public class SignupController {
         new PageLoader().load("Login");
     }
 
-    public void goToHomePage(ActionEvent actionEvent) throws IOException {
+    public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
         String username=usernameField.getText();
         String password;
         if(passwordField.isVisible()){
@@ -58,6 +57,7 @@ public class SignupController {
             usernameWarning.setVisible(false);
         }
         if(validPassword(password) && validUsername(username)){
+
             new PageLoader().load("TimeLine");
         }
     }

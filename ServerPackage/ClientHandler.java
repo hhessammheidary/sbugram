@@ -36,9 +36,9 @@ public class ClientHandler implements Runnable{
                     case IsUsernameUnique:
                         answer = API.isUserNameExists(income);
                         break;
-                    case Login:
+                    case Login: API.login(income);
                         break;
-                    case SingUp:
+                    case SingUp: API.signUp(income);
                         break;
                 }
                 socketOut.writeObject(answer);

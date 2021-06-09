@@ -34,7 +34,7 @@ public class PageLoader {
     }
 
     public Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/ClientPackage/View/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
@@ -45,7 +45,7 @@ public class PageLoader {
     }
 
     public void load(String fxml, Object postItemController) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/ClientPackage/View/" + fxml + ".fxml"));
         fxmlLoader.setController(postItemController);
         fxmlLoader.load();
     }

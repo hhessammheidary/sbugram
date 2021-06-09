@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPostPageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.AddPostPageController">
    <children>
       <TextField fx:id="titleField" layoutX="35.0" layoutY="84.0" prefHeight="35.0" prefWidth="150.0" promptText="title" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
       <TextArea fx:id="descriptionField" layoutX="35.0" layoutY="311.0" prefHeight="100.0" prefWidth="220.0" promptText="description" />

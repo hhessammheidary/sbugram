@@ -26,7 +26,6 @@ public class LoginController {
     public Button signInButton;
     public Button forgetPassword;
 
-
     public void login(ActionEvent actionEvent) throws IOException {
         String username=usernameField.getText();
         String password = null;

@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.LoginController">
    <children>
       <TextField fx:id="passwordVisible" layoutX="25.0" layoutY="263.0" prefHeight="43.0" prefWidth="197.0" promptText="password" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" visible="false" />
       <Button fx:id="loginButton" layoutX="160.0" layoutY="414.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #323232;" text="Login" textFill="#fcf7f7" />

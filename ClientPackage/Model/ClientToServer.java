@@ -11,7 +11,7 @@ import java.util.Map;
 public class ClientToServer {
 
     public static String serverAddress="127.0.0.1";
-    public static final int PORT = 2222;
+    public static final int PORT = 8080;
 
     private static boolean isConnected = false;
     public static Socket socket;
