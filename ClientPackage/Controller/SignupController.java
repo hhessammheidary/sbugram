@@ -1,6 +1,9 @@
 package ClientPackage.Controller;
 
+import ClientPackage.Model.API;
+import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
+import Commen.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -30,6 +33,7 @@ public class SignupController {
     public Button addProfileButton;
     public CheckBox showPassword;
     public TextField passwordVisible;
+    public String profilePath;
 
     public void backToLoginPage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("Login");
@@ -56,8 +60,22 @@ public class SignupController {
         else {
             usernameWarning.setVisible(false);
         }
-        if(validPassword(password) && validUsername(username)){
-
+        if(validPassword(password) && !validUsername(username)){
+            User user=new User(username);
+            user.setPassword(password);
+            if(!nameField.getText().isEmpty()) {
+                user.setName(nameField.getText());
+            }
+            if(!phoneNumberField.getText().isEmpty()) {
+                user.setPhoneNumber(phoneNumberField.getText());
+            }
+            if(lastnameField.getText().isEmpty()) {
+                user.setLastName(lastnameField.getText());
+            }
+            if(!profilePath.isEmpty()){
+                user.setProfileImage(profilePath);
+            }
+            Main.setUser(user);
             new PageLoader().load("TimeLine");
         }
     }
@@ -70,7 +88,7 @@ public class SignupController {
     }
 
     public boolean validUsername(String username){
-        return false;
+        return API.isUserNameExists(username);
     }
 
     public void showingPassword(ActionEvent actionEvent) {
@@ -95,8 +113,12 @@ public class SignupController {
                 new FileChooser.ExtensionFilter("JPG" , "*.jpg"));
         File file = fileChooser.showOpenDialog(stage);
         Image image=new Image(file.toURI().toString());
+        profilePath=file.toURI().toString();
         profileImg.setImage(image);
     }
 
-    
+
+    public void goToHomePage(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("Login");
+    }
 }

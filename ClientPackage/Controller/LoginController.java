@@ -2,6 +2,7 @@ package ClientPackage.Controller;
 
 import ClientPackage.Model.API;
 import ClientPackage.Model.ClientToServer;
+import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
 import Commen.User;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ public class LoginController {
     public Label userNotFoundLabel;
     public TextField passwordVisible;
     public CheckBox showPassword;
-    public Button signInButton;
+    public Button signUpButton;
     public Button forgetPassword;
 
     public void login(ActionEvent actionEvent) throws IOException {
@@ -31,7 +32,6 @@ public class LoginController {
         String password = null;
         boolean correctId=false;
         boolean correctPass=false;
-        User user= API.login(username , password);
 
         if (!ClientToServer.isConnected()){
             System.out.println("not connected");;
@@ -43,6 +43,7 @@ public class LoginController {
         else {
             password=passwordVisible.getText();
         }
+        User user= API.login(username , password);
         if(username.isEmpty() || password.isEmpty() || user==null){
             userNotFoundLabel.setVisible(true);
             wrongPasswordLabel.setVisible(true);
@@ -54,6 +55,7 @@ public class LoginController {
             correctPass=true;
         }
         if(correctId && correctPass){
+            Main.setUser(user);
             new PageLoader().load("TimeLine");
         }
     }
@@ -71,8 +73,8 @@ public class LoginController {
         }
     }
 
-    public void signIn(ActionEvent actionEvent) throws IOException {
-        new PageLoader().load("Signin");
+    public void signup(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("Signup");
     }
 
     public void forgetPassword(ActionEvent actionEvent) throws IOException {

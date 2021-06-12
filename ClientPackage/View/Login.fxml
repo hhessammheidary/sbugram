@@ -25,7 +25,7 @@
          </image>
       </ImageView>
       <CheckBox fx:id="showPassword" layoutX="169.0" layoutY="316.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="17.0" prefWidth="103.0" text="show password" textFill="WHITE" />
-      <Button fx:id="signInButton" layoutX="28.0" layoutY="414.0" mnemonicParsing="false" onAction="#signIn" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #323232;" text="sign in" textFill="WHITE" />
+      <Button fx:id="signUpButton" layoutX="28.0" layoutY="414.0" mnemonicParsing="false" onAction="#signup" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #323232;" text="sign up" textFill="WHITE" />
       <Button fx:id="forgetPassword" layoutX="26.0" layoutY="349.0" mnemonicParsing="false" onAction="#forgetPassword" style="-fx-background-color: #323232;" text="forget password" textFill="WHITE" />
    </children>
 </Pane>

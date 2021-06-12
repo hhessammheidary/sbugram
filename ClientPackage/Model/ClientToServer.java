@@ -27,7 +27,7 @@ public class ClientToServer {
             return false;
         }
         try{
-            socket = new Socket( serverAddress, PORT);
+            socket = new Socket( serverAddress , PORT);
             socketOut = new ObjectOutputStream( socket.getOutputStream() );
             socketIn = new ObjectInputStream( socket.getInputStream() );
             isConnected = true;
