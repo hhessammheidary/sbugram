@@ -35,6 +35,7 @@ public class Server {
             Socket userSocket = null;
             try {
                 userSocket = serverSocket.accept();
+                System.out.println("someone connected");
                 ClientHandler clientHandler = new ClientHandler(userSocket);
                 new Thread(clientHandler).start();
             } catch (IOException e) {

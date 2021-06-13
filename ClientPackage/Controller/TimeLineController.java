@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,5 +39,8 @@ public class TimeLineController {
     }
 
     public void refreshPosts(ActionEvent actionEvent) {
+    }
+
+    public void showPost(MouseEvent mouseEvent) {
     }
 }

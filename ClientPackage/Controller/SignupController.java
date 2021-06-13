@@ -76,6 +76,7 @@ public class SignupController {
                 user.setProfileImage(profilePath);
             }
             Main.setUser(user);
+            API.signUp(user);
             new PageLoader().load("TimeLine");
         }
     }
@@ -117,8 +118,4 @@ public class SignupController {
         profileImg.setImage(image);
     }
 
-
-    public void goToHomePage(ActionEvent actionEvent) throws IOException {
-        new PageLoader().load("Login");
-    }
 }

@@ -9,14 +9,12 @@ public class Main extends Application {
     public static User user;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ClientToServer.connectToServer();
         PageLoader.initStage(primaryStage);
         new PageLoader().load("Login");
     }
 
     @Override
     public void stop() throws Exception {
-        ClientToServer.disconnectFromServer();
         super.stop();
     }
 

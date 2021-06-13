@@ -10,8 +10,8 @@ import java.util.Map;
 public class API {
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
 
-        String username2check = (String) income.get("username");
-        User user = Server.users.get(username2check);
+        String usernameTocheck = (String) income.get("username");
+        User user = Server.users.get(usernameTocheck);
         Boolean exists = (user!=null);
         Map<String,Object> answer = new HashMap<>();
         answer.put("answer" , exists);

@@ -27,16 +27,17 @@ public class LoginController {
     public Button signUpButton;
     public Button forgetPassword;
 
+    boolean isServerUp=ClientToServer.connectToServer();
+
     public void login(ActionEvent actionEvent) throws IOException {
         String username=usernameField.getText();
         String password = null;
         boolean correctId=false;
         boolean correctPass=false;
-
         if (!ClientToServer.isConnected()){
-            System.out.println("not connected");;
-            return;
+            System.out.println("not connected");
         }
+
         if(passwordField.isVisible()){
             password=passwordField.getText();
         }
@@ -61,6 +62,9 @@ public class LoginController {
     }
 
     public void showPassword(ActionEvent actionEvent) {
+        if (!ClientToServer.isConnected()){
+            System.out.println("not connected");
+        }
         if(!passwordVisible.isVisible()){
             passwordField.setVisible(false);
             passwordVisible.setVisible(true);
@@ -74,10 +78,16 @@ public class LoginController {
     }
 
     public void signup(ActionEvent actionEvent) throws IOException {
+        if (!ClientToServer.isConnected()){
+            System.out.println("not connected");
+        }
         new PageLoader().load("Signup");
     }
 
     public void forgetPassword(ActionEvent actionEvent) throws IOException {
+        if (!ClientToServer.isConnected()){
+            System.out.println("not connected");
+        }
         new PageLoader().load("ForgetPassword");
     }
 }
