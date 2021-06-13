@@ -11,7 +11,7 @@ public class API {
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Commands.IsUsernameUnique);
         toSend.put("username",usernameTocheck);
-        Map<String,Object> received = ClientToServer.sendToserver(toSend);
+        Map<String,Object> received = ClientToServer.sendToServer(toSend);
         return (boolean) received.get("answer");
     }
 
@@ -19,7 +19,7 @@ public class API {
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Commands.SingUp);
         toSend.put("user", user);
-        Map<String,Object> received = ClientToServer.sendToserver(toSend);
+        Map<String,Object> received = ClientToServer.sendToServer(toSend);
         if (received.get("answer") == null){
             return null;
         }
@@ -31,7 +31,7 @@ public class API {
         toSend.put("command", Commands.Login);
         toSend.put("username",username);
         toSend.put("password",password);
-        Map<String,Object> received = ClientToServer.sendToserver(toSend);
+        Map<String,Object> received = ClientToServer.sendToServer(toSend);
         if ( received.get("answer") == null ){
             return null;
         }

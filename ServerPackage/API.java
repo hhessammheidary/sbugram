@@ -10,8 +10,8 @@ import java.util.Map;
 public class API {
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
 
-        String usernameTocheck = (String) income.get("username");
-        User user = Server.users.get(usernameTocheck);
+        String usernameToCheck = (String) income.get("username");
+        User user = Server.users.get(usernameToCheck);
         Boolean exists = (user!=null);
         Map<String,Object> answer = new HashMap<>();
         answer.put("answer" , exists);
@@ -41,15 +41,16 @@ public class API {
         String password = (String)income.get("password");
         Map<String , Object> answer=new HashMap<>();
 
-        User user=Server.users.get(username);
-        answer.put("command" , Commands.Login);
-        answer.put("exists" , (user!=null));
+        User user=Server.users.get(username).Conformity(username , password);
         if(user==null){
             return answer;
         }
-        answer.put("answer" , user);
-        System.out.println(user.getUsername() + " : login");
-        System.out.println("time : " + LocalDateTime.now());
+        answer.put(username , user);
+        if(user!=null){
+            System.out.println(user.getUsername() + " : login");
+            System.out.println("time : " + LocalDateTime.now());
+        }
+
 
         return answer;
     }

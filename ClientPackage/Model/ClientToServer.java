@@ -62,19 +62,18 @@ public class ClientToServer {
         return false;
     }
 
-    public static Map<String,Object> sendToserver(Map<String,Object> toSend){
-        Map<String,Object> recieved = null;
+    public static Map<String,Object> sendToServer(Map<String,Object> toSend){
+        Map<String,Object> received = null;
         try{
             socketOut.writeObject(toSend);
             socketOut.flush();
             socketOut.reset();
-            recieved = (Map<String,Object>) socketIn.readObject();
-            return recieved;
+            received = (Map<String,Object>) socketIn.readObject();
+            return received;
 
-        } catch (ClassNotFoundException e){
-        } catch( IOException e){
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        return recieved;
+        return received;
     }
 }

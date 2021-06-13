@@ -25,7 +25,6 @@ public class SignupController {
     public PasswordField passwordField;
     public TextField forgotPasswordField;
     public TextField phoneNumberField;
-    public Button signinButton;
     public Button backToLoginButton;
     public Label usernameWarning;
     public Label passwordWarning;
@@ -33,7 +32,9 @@ public class SignupController {
     public Button addProfileButton;
     public CheckBox showPassword;
     public TextField passwordVisible;
+    public Button signUpButton;
     public String profilePath;
+
 
     public void backToLoginPage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("Login");
@@ -72,7 +73,7 @@ public class SignupController {
             if(lastnameField.getText().isEmpty()) {
                 user.setLastName(lastnameField.getText());
             }
-            if(!profilePath.isEmpty()){
+            if(profilePath!=null){
                 user.setProfileImage(profilePath);
             }
             Main.setUser(user);

@@ -73,6 +73,13 @@ public class User implements  Serializable {
         this.posts.remove(post);
     }
 
+    public User Conformity(String username , String password){
+        if(this.username.equals(username) && this.password.equals(password)){
+            return this;
+        }
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
