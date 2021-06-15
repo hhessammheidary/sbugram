@@ -63,7 +63,7 @@ public class SignupController {
         }
         if(validPassword(password) && !validUsername(username)){
             User user=new User(username);
-            user.setPassword(password);
+            user.changePassword(password);
             if(!nameField.getText().isEmpty()) {
                 user.setName(nameField.getText());
             }

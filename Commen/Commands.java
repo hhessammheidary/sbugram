@@ -1,5 +1,5 @@
 package Commen;
 
 public enum Commands {
-    Login , SingUp , IsUsernameUnique
+    Login , SingUp , IsUsernameUnique , ForgetPassword , ChangePassword ,  SinglePost
 }

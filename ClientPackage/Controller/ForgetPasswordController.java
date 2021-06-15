@@ -1,5 +1,6 @@
 package ClientPackage.Controller;
 
+import ClientPackage.Model.API;
 import ClientPackage.Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -28,16 +29,18 @@ public class ForgetPasswordController {
         if(!validUsername(username)){
             userNotFoundLabel.setVisible(true);
         }
-        else {
+        else{
             userNotFoundLabel.setVisible(false);
         }
-        if(!validAnswer(answer)){
+        if(!validAnswer(username , answer)){
             wrongAnswerFavFoodLabel.setVisible(true);
         }
         else {
-            wrongAnswerFavFoodLabel.setVisible(false);
+            wrongAnswerFavFoodLabel.setVisible(true);
         }
-        if(validAnswer(answer) && validUsername(username)){
+        if(validAnswer(username , answer) && validUsername(username)){
+            wrongAnswerFavFoodLabel.setVisible(false);
+            userNotFoundLabel.setVisible(false);
             passwordField.setVisible(true);
             enterNewPass.setVisible(true);
             showPassword.setVisible(true);
@@ -58,6 +61,7 @@ public class ForgetPasswordController {
         }
         else {
             passwordWarning.setVisible(false);
+            changePassword(usernameField.getText() , password);
             new PageLoader().load("Login");
         }
     }
@@ -87,10 +91,14 @@ public class ForgetPasswordController {
     }
 
     public boolean validUsername(String username){
-        return username.equals("hessam");
+        return API.isUserNameExists(username);
     }
 
-    public boolean validAnswer(String answer){
-        return answer.equals("ghorme");
+    public boolean validAnswer(String username , String answer){
+        return API.forgetPassword(username , answer);
+    }
+
+    public void changePassword(String username , String newPassword){
+        API.changePassword(username , newPassword);
     }
 }

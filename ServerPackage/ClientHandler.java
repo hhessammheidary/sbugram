@@ -42,6 +42,12 @@ public class ClientHandler implements Runnable{
                     case SingUp:
                         answer = API.signUp(income);
                         break;
+                    case ForgetPassword:
+                        answer=API.forgetPassword(income);
+                        break;
+                    case ChangePassword:
+                        answer=API.changePassword(income);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

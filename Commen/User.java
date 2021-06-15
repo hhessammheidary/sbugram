@@ -14,7 +14,8 @@ public class User implements  Serializable {
     private String name;
     private String lastName;
     private String phoneNumber;
-    private String  profileImagePath;
+    private String profileImagePath;
+    private String favFood;
     private static List<Post> posts=new ArrayList<>();
 
     public User(String username) {
@@ -53,7 +54,7 @@ public class User implements  Serializable {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void changePassword(String password) {
         this.password = password;
     }
 
@@ -80,6 +81,9 @@ public class User implements  Serializable {
         return null;
     }
 
+    public Boolean isCorrectFavFood(String  username, String favFood){
+        return (this.username.equals(username) && this.favFood.equals(favFood));
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

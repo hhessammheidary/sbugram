@@ -52,4 +52,28 @@ public class API {
         System.out.println("time : " + LocalDateTime.now());
         return answer;
     }
+
+    public static Map<String , Object> forgetPassword(Map<String , Object> income){
+        String username = (String)income.get("username");
+        String favFood = (String)income.get("favFood");
+        Map<String , Object> answer=new HashMap<>();
+
+        answer.put("command" , Commands.ForgetPassword);
+        Boolean isCorrect=Server.users.get(username).isCorrectFavFood(username , favFood);
+        answer.put("answer" , isCorrect);
+        return answer;
+    }
+
+    public static Map<String , Object> changePassword(Map<String , Object> income){
+        String username = (String)income.get("username");
+        String newPassword = (String)income.get("newPassword");
+        Server.users.get(username).changePassword(newPassword);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + "change password");
+
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("answer" , Boolean.TRUE);
+        return toSend;
+    }
 }
