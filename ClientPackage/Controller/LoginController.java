@@ -32,30 +32,26 @@ public class LoginController {
     public void login(ActionEvent actionEvent) throws IOException {
         String username=usernameField.getText();
         String password = null;
-        boolean correctId=false;
-        boolean correctPass=false;
+
         if (!ClientToServer.isConnected()){
             System.out.println("not connected");
         }
 
         if(passwordField.isVisible()){
-            password=passwordField.getText();
+            password=passwordField.getText();-
         }
         else {
             password=passwordVisible.getText();
         }
-        User user= API.login(username , password);
-        if(username.isEmpty() || password.isEmpty() || user==null){
-            userNotFoundLabel.setVisible(true);
+
+        User user=API.login(username , password);
+        if(user==null){
             wrongPasswordLabel.setVisible(true);
+            userNotFoundLabel.setVisible(true);
         }
-        else {
-            userNotFoundLabel.setVisible(false);
+        else{
             wrongPasswordLabel.setVisible(false);
-            correctId=true;
-            correctPass=true;
-        }
-        if(correctId && correctPass){
+            userNotFoundLabel.setVisible(false);
             Main.setUser(user);
             new PageLoader().load("TimeLine");
         }

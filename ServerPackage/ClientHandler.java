@@ -13,7 +13,7 @@ public class ClientHandler implements Runnable{
     private Socket userSocket;
     private ObjectOutputStream socketOut;
     private ObjectInputStream socketIn;
-    public Boolean isclientOnline = true;
+    public Boolean isClientOnline = true;
 
     public ClientHandler(Socket socket){
         try {
@@ -26,7 +26,7 @@ public class ClientHandler implements Runnable{
     }
     @Override
     public void run() {
-        while(isclientOnline){
+        while(isClientOnline){
             Map<String,Object> income = null;
             try{
                 income = (Map<String,Object>) socketIn.readObject();
@@ -47,6 +47,7 @@ public class ClientHandler implements Runnable{
                 socketOut.flush();
             }
             catch(ClassCastException | ClassNotFoundException e){
+
             }
             catch(EOFException e){
                 break;
@@ -56,12 +57,13 @@ public class ClientHandler implements Runnable{
             }
 
         }
-        // after login out!
-        try{
+        // after logout!
+        try {
             socketIn.close();
             socketOut.close();
             userSocket.close();
-        }catch(IOException e){}
-
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 }

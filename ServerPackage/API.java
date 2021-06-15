@@ -46,12 +46,8 @@ public class API {
             return answer;
         }
         answer.put(username , user);
-        if(user!=null){
-            System.out.println(user.getUsername() + " : login");
-            System.out.println("time : " + LocalDateTime.now());
-        }
-
-
+        System.out.println(user.getUsername() + " : login");
+        System.out.println("time : " + LocalDateTime.now());
         return answer;
     }
 }

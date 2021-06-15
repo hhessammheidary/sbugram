@@ -4,7 +4,7 @@ import Commen.User;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
-
+//--module-path "C:\Program Files\javafx-sdk-12.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class Main extends Application {
     public static User user;
     @Override
