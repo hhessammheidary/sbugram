@@ -78,7 +78,7 @@ public class SignupController {
             }
             Main.setUser(user);
             API.signUp(user);
-            new PageLoader().load("TimeLine");
+            new PageLoader().load("Login");
         }
     }
 

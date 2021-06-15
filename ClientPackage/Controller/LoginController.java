@@ -38,7 +38,7 @@ public class LoginController {
         }
 
         if(passwordField.isVisible()){
-            password=passwordField.getText();-
+            password=passwordField.getText();
         }
         else {
             password=passwordVisible.getText();

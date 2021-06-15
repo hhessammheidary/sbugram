@@ -40,13 +40,15 @@ public class API {
         String username = (String)income.get("username");
         String password = (String)income.get("password");
         Map<String , Object> answer=new HashMap<>();
+        answer.put("command",Commands.Login);
+        answer.put("exists",!(Server.users.get(username) == null));
 
         User user=Server.users.get(username).Conformity(username , password);
         if(user==null){
             return answer;
         }
-        answer.put(username , user);
-        System.out.println(user.getUsername() + " : login");
+        answer.put("answer" , user);
+        System.out.println(user.getUsername() + " : SignUp");
         System.out.println("time : " + LocalDateTime.now());
         return answer;
     }
