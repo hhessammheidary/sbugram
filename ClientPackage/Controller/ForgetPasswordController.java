@@ -36,7 +36,7 @@ public class ForgetPasswordController {
             wrongAnswerFavFoodLabel.setVisible(true);
         }
         else {
-            wrongAnswerFavFoodLabel.setVisible(true);
+            wrongAnswerFavFoodLabel.setVisible(false);
         }
         if(validAnswer(username , answer) && validUsername(username)){
             wrongAnswerFavFoodLabel.setVisible(false);

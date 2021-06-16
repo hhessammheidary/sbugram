@@ -58,6 +58,14 @@ public class User implements  Serializable {
         this.password = password;
     }
 
+    public String getFavFood() {
+        return favFood;
+    }
+
+    public void setFavFood(String favFood) {
+        this.favFood = favFood;
+    }
+
     public String  getProfileImage() {
         return profileImagePath;
     }
@@ -81,7 +89,7 @@ public class User implements  Serializable {
         return null;
     }
 
-    public Boolean isCorrectFavFood(String  username, String favFood){
+    public boolean isCorrectFavFood(String  username, String favFood){
         return (this.username.equals(username) && this.favFood.equals(favFood));
     }
     @Override

@@ -23,7 +23,7 @@ public class SignupController {
     public TextField usernameField;
     public TextField nameField;
     public PasswordField passwordField;
-    public TextField forgotPasswordField;
+    public TextField favFoodField;
     public TextField phoneNumberField;
     public Button backToLoginButton;
     public Label usernameWarning;
@@ -61,7 +61,7 @@ public class SignupController {
         else {
             usernameWarning.setVisible(false);
         }
-        if(validPassword(password) && !validUsername(username)){
+        if(validPassword(password) && validUsername(username)){
             User user=new User(username);
             user.changePassword(password);
             if(!nameField.getText().isEmpty()) {
@@ -70,12 +70,16 @@ public class SignupController {
             if(!phoneNumberField.getText().isEmpty()) {
                 user.setPhoneNumber(phoneNumberField.getText());
             }
-            if(lastnameField.getText().isEmpty()) {
+            if(!lastnameField.getText().isEmpty()) {
                 user.setLastName(lastnameField.getText());
+            }
+            if(!favFoodField.getText().isEmpty()){
+                user.setFavFood(favFoodField.getText());
             }
             if(profilePath!=null){
                 user.setProfileImage(profilePath);
             }
+
             Main.setUser(user);
             API.signUp(user);
             new PageLoader().load("Login");
@@ -90,7 +94,7 @@ public class SignupController {
     }
 
     public boolean validUsername(String username){
-        return API.isUserNameExists(username);
+        return !API.isUserNameExists(username);
     }
 
     public void showingPassword(ActionEvent actionEvent) {

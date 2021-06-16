@@ -59,6 +59,10 @@ public class API {
         Map<String , Object> answer=new HashMap<>();
 
         answer.put("command" , Commands.ForgetPassword);
+        if(Server.users.get(username) == null){
+            answer.put("answer" , false);
+            return answer;
+        }
         Boolean isCorrect=Server.users.get(username).isCorrectFavFood(username , favFood);
         answer.put("answer" , isCorrect);
         return answer;
