@@ -1,5 +1,7 @@
 package ClientPackage.Controller;
 
+import ClientPackage.Model.API;
+import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
 import Commen.Post;
 import javafx.collections.FXCollections;
@@ -16,12 +18,12 @@ public class TimeLineController {
     public Button timeLineButton;
     public Button addPostButton;
     public Button profileButton;
+    public ListView<Post> postList;
 
-    public static ListView<Post> postlist=new ListView<>();
     public static ArrayList<Post> posts=new ArrayList<>();
-    //public Post currentPost=new Post();
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
+        posts=API.timeLine(Main.getUser().getUsername());
         new PageLoader().load("TimeLine");
     }
 
@@ -34,13 +36,11 @@ public class TimeLineController {
     }
 
     public void initialize(){
-        postlist.setItems(FXCollections.observableArrayList(posts));
-        postlist.setCellFactory(postlist -> new PostItem());
+        postList.setItems(FXCollections.observableArrayList(posts));
+        postList.setCellFactory(postlist -> new PostItem());
     }
 
     public void refreshPosts(ActionEvent actionEvent) {
-    }
-
-    public void showPost(MouseEvent mouseEvent) {
+        posts.addAll(API.timeLine(Main.getUser().getUsername()));
     }
 }

@@ -2,12 +2,14 @@ package ServerPackage;
 
 
 
+import Commen.Post;
 import Commen.User;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
+import java.util.Vector;
 
 public class Server {
     private static final int port=8080;

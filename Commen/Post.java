@@ -7,25 +7,23 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.*;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Post implements Serializable , Comparable {
-    private final String writer;
-    private final String title;
-    private final String description;
+    private String writer;
+    private String title;
+    private String description;
     private final LocalDateTime dateWithTime;
     private final LocalDate date;
-    private int like = 0;
-    private int repost = 0;
-    private final Image image;
-    public static CopyOnWriteArrayList<String> comments;
+    private Map<String , Post> likes=new ConcurrentHashMap<>();
+    private Map<String , Post> reposts=new ConcurrentHashMap<>();
+    private Map<String , Post> comments=new ConcurrentHashMap<>();
+    public byte[] postImageByteArray;
 
-    public Post(String writer , String title , String description , Image image) {
-        this.writer=writer;
-        this.title=title;
-        this.description=description;
-        this.image=image;
+    public Post(){
         this.dateWithTime=LocalDateTime.now();
         this.date=LocalDate.now();
     }
@@ -34,32 +32,44 @@ public class Post implements Serializable , Comparable {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getWriter() {
         return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public int getLike() {
-        return like;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setLike() {
-        like++;
+    public void likePost(String username , Post post) {
+        likes.put(username , post);
     }
 
-    public int getRepost() {
-        return repost;
+    public void repost(String username , Post post) {
+        reposts.put(username, post);
     }
 
-    public void setRepost(){
-        repost++;
+    public void comment(String username , Post post) {
+        comments.put(username, post);
     }
 
-    public Image getImage() {
-        return image;
+    public byte[]  getPostImageByteArray() {
+        return postImageByteArray;
+    }
+
+    public void setPostImageByteArray(byte[] postImageByteArray) {
+        this.postImageByteArray=postImageByteArray;
     }
 
     public LocalDate getDate() {

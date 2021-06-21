@@ -1,8 +1,10 @@
 package ServerPackage;
 
+import Commen.Post;
 import Commen.User;
 
 import java.io.*;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DataBaseManager {
@@ -31,12 +33,11 @@ public class DataBaseManager {
     //synchronized cuz multithread issues
     public synchronized void updateDataBase(){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(userFile);
-            ObjectOutputStream objToFile = new ObjectOutputStream(fileOutputStream);
-            objToFile.writeObject(Server.users); //writing profiles
-            objToFile.close();
-            fileOutputStream.close();
-
+            FileOutputStream fileOutputStream1 = new FileOutputStream(userFile);
+            ObjectOutputStream objToFile1 = new ObjectOutputStream(fileOutputStream1);
+            objToFile1.writeObject(Server.users); //writing users
+            objToFile1.close();
+            fileOutputStream1.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

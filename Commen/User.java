@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class User implements  Serializable {
@@ -14,9 +15,11 @@ public class User implements  Serializable {
     private String name;
     private String lastName;
     private String phoneNumber;
-    private String profileImagePath;
+    private byte[] profileImageByteArray;
     private String favFood;
     private static List<Post> posts=new ArrayList<>();
+    private static List<String> followers = new ArrayList<>();
+    private static List<String> following = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
@@ -66,12 +69,12 @@ public class User implements  Serializable {
         this.favFood = favFood;
     }
 
-    public String  getProfileImage() {
-        return profileImagePath;
+    public byte[]  getProfileImage() {
+        return profileImageByteArray;
     }
 
-    public void setProfileImage(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
+    public void setProfileImage(byte[] profileImageByteArray) {
+        this.profileImageByteArray=profileImageByteArray;
     }
 
     public void addPost(Post post){
@@ -80,6 +83,26 @@ public class User implements  Serializable {
 
     public void removePost(Post post){
         this.posts.remove(post);
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public List<String> getFollowers() {
+        return followers;
+    }
+
+    public void follow(String username) {
+        following.add(username);
+    }
+
+    public List<String> getFollowing() {
+        return following;
+    }
+
+    public void followed(String username){
+        followers.add(username);
     }
 
     public User Conformity(String username , String password){
@@ -99,4 +122,5 @@ public class User implements  Serializable {
         User user = (User) o;
         return Objects.equals(username, user.username);
     }
+
 }

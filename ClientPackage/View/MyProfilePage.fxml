@@ -34,12 +34,12 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="70.0" layoutY="135.0" text="x" textFill="WHITE">
+                <Label layoutX="70.0" layoutY="135.0" text="0" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="230.0" layoutY="135.0" text="y" textFill="WHITE">
+                <Label layoutX="230.0" layoutY="135.0" text="0" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -85,4 +85,3 @@
         </ToolBar>
     </items>
 </SplitPane>
-

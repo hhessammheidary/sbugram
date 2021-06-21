@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,7 +34,7 @@ public class SignupController {
     public CheckBox showPassword;
     public TextField passwordVisible;
     public Button signUpButton;
-    public String profilePath;
+    public byte[] profileImageByteArray;
 
 
     public void backToLoginPage(ActionEvent actionEvent) throws IOException {
@@ -76,8 +77,8 @@ public class SignupController {
             if(!favFoodField.getText().isEmpty()){
                 user.setFavFood(favFoodField.getText());
             }
-            if(profilePath!=null){
-                user.setProfileImage(profilePath);
+            if(profileImageByteArray!=null){
+                user.setProfileImage(profileImageByteArray);
             }
 
             Main.setUser(user);
@@ -119,7 +120,13 @@ public class SignupController {
                 new FileChooser.ExtensionFilter("JPG" , "*.jpg"));
         File file = fileChooser.showOpenDialog(stage);
         Image image=new Image(file.toURI().toString());
-        profilePath=file.toURI().toString();
+        byte[] imageToByteArray = new byte[0];
+        try {
+            imageToByteArray= Files.readAllBytes(file.toPath());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        profileImageByteArray=imageToByteArray;
         profileImg.setImage(image);
     }
 

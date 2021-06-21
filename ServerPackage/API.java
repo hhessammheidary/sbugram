@@ -1,11 +1,16 @@
 package ServerPackage;
 
 import Commen.Commands;
+import Commen.Post;
 import Commen.User;
+import javafx.geometry.Pos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class API {
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
@@ -73,11 +78,41 @@ public class API {
         String newPassword = (String)income.get("newPassword");
         Server.users.get(username).changePassword(newPassword);
         DataBaseManager.getInstance().updateDataBase();
-        System.out.println(username + "change password");
+        System.out.println(username + " : change password");
 
         Map<String , Object> toSend=new HashMap<>();
         toSend.put("command" , Commands.ChangePassword);
         toSend.put("answer" , Boolean.TRUE);
+        return toSend;
+    }
+
+    public static Map<String , Object> addPost(Map<String , Object> income){
+        Post post = (Post)income.get("newPost");
+        String username = (String)income.get("username");
+        Server.users.get(username).addPost(post);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : add post");
+
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.AddPost);
+        toSend.put("answer" , Boolean.TRUE);
+        return toSend;
+    }
+
+    public static Map<String , Object> timeLine(Map<String , Object> income){
+        String username = (String)income.get("username");
+        User user = Server.users.get(username);
+        ArrayList<Post> timeLinePosts = new ArrayList<>(Server.users.get(username).getPosts());
+        if(!user.getFollowing().isEmpty()){
+            for(int i=0;i<user.getFollowing().size();i++){
+                timeLinePosts.addAll(Server.users.get(user.getFollowing().get(i)).getPosts());
+            }
+        }
+        timeLinePosts = (ArrayList<Post>) timeLinePosts.stream().sorted((p1 , p2) -> p1.getDateWithTime().compareTo(p2.getDateWithTime())).collect(Collectors.toList());
+
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.TimeLine);
+        toSend.put("answer" , timeLinePosts);
         return toSend;
     }
 }
