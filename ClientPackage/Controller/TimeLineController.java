@@ -35,12 +35,17 @@ public class TimeLineController {
         new PageLoader().load("ProfilePage");
     }
 
-    public void initialize(){
+    public void initialize() throws IOException {
+        loadPosts();
         postList.setItems(FXCollections.observableArrayList(posts));
-        postList.setCellFactory(postlist -> new PostItem());
+        postList.setCellFactory(postList -> new PostItem());
     }
 
-    public void refreshPosts(ActionEvent actionEvent) {
-        posts.addAll(API.timeLine(Main.getUser().getUsername()));
+    public void refreshPosts(ActionEvent actionEvent) throws IOException {
+        loadPosts();
+    }
+
+    public void loadPosts() throws IOException {
+        posts=API.timeLine(Main.getUser().getUsername());
     }
 }

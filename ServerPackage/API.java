@@ -53,7 +53,7 @@ public class API {
             return answer;
         }
         answer.put("answer" , user);
-        System.out.println(user.getUsername() + " : SignUp");
+        System.out.println(user.getUsername() + " : login");
         System.out.println("time : " + LocalDateTime.now());
         return answer;
     }
@@ -88,6 +88,7 @@ public class API {
 
     public static Map<String , Object> addPost(Map<String , Object> income){
         Post post = (Post)income.get("newPost");
+        System.out.println(post.getTitle());
         String username = (String)income.get("username");
         Server.users.get(username).addPost(post);
         DataBaseManager.getInstance().updateDataBase();
@@ -108,7 +109,7 @@ public class API {
                 timeLinePosts.addAll(Server.users.get(user.getFollowing().get(i)).getPosts());
             }
         }
-        timeLinePosts = (ArrayList<Post>) timeLinePosts.stream().sorted((p1 , p2) -> p1.getDateWithTime().compareTo(p2.getDateWithTime())).collect(Collectors.toList());
+        timeLinePosts = (ArrayList<Post>) timeLinePosts.stream().sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime())).collect(Collectors.toList());
 
         Map<String , Object> toSend=new HashMap<>();
         toSend.put("command" , Commands.TimeLine);

@@ -28,8 +28,8 @@ public class PostItemController {
     public Button commentButton;
 
     public PostItemController(Post post) throws IOException {
-        this.post=post;
         new PageLoader().load("PostItem" , this);
+        this.post=post;
     }
 
     public AnchorPane init() {

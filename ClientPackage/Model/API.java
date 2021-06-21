@@ -72,7 +72,7 @@ public class API {
         Map<String , Object> toSend=new HashMap<>();
         toSend.put("command" , Commands.TimeLine);
         toSend.put("username" , username);
-        Map<String , Object> received=ClientToServer.sendToServer(toSend);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
         return (ArrayList<Post>)received.get("answer");
     }
 }

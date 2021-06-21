@@ -17,9 +17,9 @@ public class User implements  Serializable {
     private String phoneNumber;
     private byte[] profileImageByteArray;
     private String favFood;
-    private static List<Post> posts=new ArrayList<>();
-    private static List<String> followers = new ArrayList<>();
-    private static List<String> following = new ArrayList<>();
+    private static final List<Post> posts=new ArrayList<>();
+    private static final List<String> followers = new ArrayList<>();
+    private static final List<String> following = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
@@ -78,11 +78,11 @@ public class User implements  Serializable {
     }
 
     public void addPost(Post post){
-        this.posts.add(post);
+        posts.add(post);
     }
 
     public void removePost(Post post){
-        this.posts.remove(post);
+        posts.remove(post);
     }
 
     public List<Post> getPosts() {

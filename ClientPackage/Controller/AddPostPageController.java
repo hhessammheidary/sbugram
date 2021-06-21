@@ -54,7 +54,7 @@ public class AddPostPageController {
         byte[] imageToByteArray = new byte[0];
         try {
             imageToByteArray= Files.readAllBytes(file.toPath());
-        } catch (IOException ioException) {
+        } catch (IOException ioException){
             ioException.printStackTrace();
         }
         postImageByteArray=imageToByteArray;
