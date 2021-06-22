@@ -6,13 +6,18 @@ import Commen.User;
 import javafx.geometry.Pos;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class API {
+    public static Map<String , Object> getUser(Map<String , Object> income){
+        String username=(String) income.get("username");
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.GetUser);
+        answer.put("answer" , Server.users.get(username));
+
+        return answer;
+    }
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
 
         String usernameToCheck = (String) income.get("username");
@@ -80,10 +85,10 @@ public class API {
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : change password");
 
-        Map<String , Object> toSend=new HashMap<>();
-        toSend.put("command" , Commands.ChangePassword);
-        toSend.put("answer" , Boolean.TRUE);
-        return toSend;
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.ChangePassword);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
     }
 
     public static Map<String , Object> addPost(Map<String , Object> income){
@@ -94,10 +99,10 @@ public class API {
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : add post");
 
-        Map<String , Object> toSend=new HashMap<>();
-        toSend.put("command" , Commands.AddPost);
-        toSend.put("answer" , Boolean.TRUE);
-        return toSend;
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.AddPost);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
     }
 
     public static Map<String , Object> timeLine(Map<String , Object> income){
@@ -111,9 +116,37 @@ public class API {
         }
         timeLinePosts = (ArrayList<Post>) timeLinePosts.stream().sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime())).collect(Collectors.toList());
 
-        Map<String , Object> toSend=new HashMap<>();
-        toSend.put("command" , Commands.TimeLine);
-        toSend.put("answer" , timeLinePosts);
-        return toSend;
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.TimeLine);
+        answer.put("answer" , timeLinePosts);
+        return answer;
+    }
+
+    public static Map<String , Object> deleteAccount(Map<String , Object> income){
+        String username=(String)income.get("username");
+        Server.users.remove(username);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : delete account");
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.DeleteAccount);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String , Object> searchUser(Map<String , Object> income){
+        String words = (String)income.get("words");
+        Collection<User> values = Server.users.values();
+        ArrayList<User> users=new ArrayList<>(values);
+        for (int i=users.size()-1;i>=0;i--){
+            if(!users.get(i).getUsername().contains(words)){
+                users.remove(i);
+            }
+        }
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.SearchUser);
+        answer.put("answer" , users);
+        return answer;
     }
 }

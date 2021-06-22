@@ -10,11 +10,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class API {
-    public static boolean isUserNameExists(String usernameTocheck){
+    public static User getUser(String username){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("Command" , Commands.GetUser);
+        toSend.put("username" , username);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+
+        return (User)received.get("answer");
+    }
+
+    public static boolean isUserNameExists(String usernameToCheck){
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Commands.IsUsernameUnique);
-        toSend.put("username",usernameTocheck);
+        toSend.put("username",usernameToCheck);
         Map<String,Object> received = ClientToServer.sendToServer(toSend);
+
         return (boolean) received.get("answer");
     }
 
@@ -74,5 +84,22 @@ public class API {
         toSend.put("username" , username);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
         return (ArrayList<Post>)received.get("answer");
+    }
+
+    public static boolean deleteAccount(String username){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.DeleteAccount);
+        toSend.put("username" , username);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (boolean) received.get("answer");
+    }
+
+    public static ArrayList<User> SearchUser(String words){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.SearchUser);
+        toSend.put("words" , words);
+
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (ArrayList<User>) received.get("answer");
     }
 }

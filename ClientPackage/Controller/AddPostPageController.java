@@ -28,6 +28,8 @@ public class AddPostPageController {
     public Button addPostPhotoButton;
     public Button publishButton;
     public Label titleError;
+    public Button searchPageButton;
+
     public byte[] postImageByteArray;
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
@@ -36,6 +38,9 @@ public class AddPostPageController {
 
     public void goToAddPostPage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("AddPostPage");
+    }
+
+    public void goToSearchPage(ActionEvent actionEvent) {
     }
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {

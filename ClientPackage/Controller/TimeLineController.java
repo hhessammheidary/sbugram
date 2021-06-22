@@ -19,16 +19,19 @@ public class TimeLineController {
     public Button addPostButton;
     public Button profileButton;
     public ListView<Post> postList;
+    public Button searchPageButton;
 
     public static ArrayList<Post> posts=new ArrayList<>();
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
-        posts=API.timeLine(Main.getUser().getUsername());
         new PageLoader().load("TimeLine");
     }
 
     public void goToAddPostPage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("AddPostPage");
+    }
+
+    public void goToSearchPage(ActionEvent actionEvent) {
     }
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {
