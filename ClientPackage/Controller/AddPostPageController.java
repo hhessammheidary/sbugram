@@ -39,7 +39,7 @@ public class AddPostPageController {
     }
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {
-        new PageLoader().load("ProfilePage");
+        new PageLoader().load("MyProfilePage");
     }
 
     public void addPostPhoto(ActionEvent actionEvent) {

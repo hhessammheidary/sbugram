@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -21,8 +22,9 @@ public class PostItemController {
     public Post post;
     public AnchorPane anchorPane;
     public Label usernameLabel;
-    public ImageView profileImage;
     public Label titleLabel;
+    public TextArea description;
+    public ImageView profileImage;
     public Button likePostButton;
     public Button repostButton;
     public Button commentButton;
@@ -35,6 +37,7 @@ public class PostItemController {
     public AnchorPane init() {
         usernameLabel.setText(post.getWriter());
         titleLabel.setText(post.getTitle());
+        description.setText(post.getDescription());
         return anchorPane;
     }
 

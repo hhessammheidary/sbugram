@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.PostItemController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="280.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="usernameLabel" layoutX="25.0" layoutY="70.0" text="username" textFill="WHITE" />
       <ImageView fx:id="profileImage" fitHeight="60.0" fitWidth="60.0" layoutX="21.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -21,7 +21,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="likePostButton" layoutX="38.0" layoutY="358.0" mnemonicParsing="false" onAction="#likePost" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;">
+      <Button fx:id="likePostButton" layoutX="17.0" layoutY="358.0" mnemonicParsing="false" onAction="#likePost" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -30,13 +30,13 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="repostButton" layoutX="121.0" layoutY="358.0" mnemonicParsing="false" onAction="#repostPost" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;" text="Repost" textFill="WHITE">
+      <Button fx:id="repostButton" layoutX="108.0" layoutY="358.0" mnemonicParsing="false" onAction="#repostPost" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;" text="Repost" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TextArea editable="false" layoutX="24.0" layoutY="97.0" prefHeight="78.0" prefWidth="252.0" style="-fx-background-color: #001701;" />
-      <Button fx:id="commentButton" layoutX="207.0" layoutY="358.0" mnemonicParsing="false" onAction="#comment" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;">
+      <TextArea fx:id="description" editable="false" layoutX="15.0" layoutY="97.0" prefHeight="78.0" prefWidth="252.0" promptText="description" />
+      <Button fx:id="commentButton" layoutX="202.0" layoutY="358.0" mnemonicParsing="false" onAction="#comment" prefHeight="33.0" prefWidth="60.0" style="-fx-background-color: #323232;">
          <font>
             <Font size="10.0" />
          </font>

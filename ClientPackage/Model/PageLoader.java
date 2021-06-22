@@ -18,7 +18,7 @@ public class PageLoader {
     public static void initStage(Stage primaryStage){
         stage=primaryStage;
         stage.setTitle("sbugram");
-        stage.setWidth(305);
+        stage.setWidth(315);
         stage.setHeight(640);
         stage.initStyle(StageStyle.DECORATED);
         stage.setResizable(false);
