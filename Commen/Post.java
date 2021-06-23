@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Post implements Serializable , Comparable {
+    PostType postType;
     private String writer;
     private String title;
     private String description;
@@ -21,9 +22,11 @@ public class Post implements Serializable , Comparable {
     private Map<String , Post> likes=new ConcurrentHashMap<>();
     private Map<String , Post> reposts=new ConcurrentHashMap<>();
     private Map<String , Post> comments=new ConcurrentHashMap<>();
-    public byte[] postImageByteArray;
+    private boolean isRepost=false;
+    private byte[] postImageByteArray;
 
-    public Post(){
+    public Post(PostType postType){
+        this.postType=postType;
         this.dateWithTime=LocalDateTime.now();
         this.date=LocalDate.now();
     }
@@ -78,6 +81,10 @@ public class Post implements Serializable , Comparable {
 
     public LocalDateTime getDateWithTime() {
         return dateWithTime;
+    }
+
+    public Boolean isRepost(){
+        return isRepost;
     }
 
     public boolean equals(Object o){

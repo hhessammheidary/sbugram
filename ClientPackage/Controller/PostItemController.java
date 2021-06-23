@@ -15,16 +15,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class PostItemController {
     public Post post;
     public AnchorPane anchorPane;
     public Label usernameLabel;
     public Label titleLabel;
+    public Label postDate;
     public TextArea description;
+    public ImageView postImage;
     public ImageView profileImage;
+    public ImageView repostIcon;
     public Button likePostButton;
     public Button repostButton;
     public Button commentButton;
@@ -38,6 +44,18 @@ public class PostItemController {
         usernameLabel.setText(post.getWriter());
         titleLabel.setText(post.getTitle());
         description.setText(post.getDescription());
+        if(post.getPostImageByteArray()!=null){
+            postImage.setImage(new Image(new ByteArrayInputStream(post.getPostImageByteArray())));
+        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh");
+        String dateAsString = dateFormat.format(post.getDateWithTime());
+        postDate.setText(dateAsString);
+        if(post.isRepost()){
+            repostIcon.setVisible(true);
+        }
+        else {
+            repostIcon.setVisible(false);
+        }
         return anchorPane;
     }
 

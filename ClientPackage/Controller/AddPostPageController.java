@@ -4,6 +4,7 @@ import ClientPackage.Model.API;
 import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
 import Commen.Post;
+import Commen.PostType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,7 +41,8 @@ public class AddPostPageController {
         new PageLoader().load("AddPostPage");
     }
 
-    public void goToSearchPage(ActionEvent actionEvent) {
+    public void goToSearchPage(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("SearchPage");
     }
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {
@@ -56,18 +58,18 @@ public class AddPostPageController {
         File file = fileChooser.showOpenDialog(stage);
         Image image=new Image(file.toURI().toString());
         postImage.setImage(image);
-        byte[] imageToByteArray = new byte[0];
+        byte[] imageToByteArray;
         try {
             imageToByteArray= Files.readAllBytes(file.toPath());
+            postImageByteArray=imageToByteArray;
         } catch (IOException ioException){
             ioException.printStackTrace();
         }
-        postImageByteArray=imageToByteArray;
         postImage.setImage(image);
     }
 
     public void publishPost(ActionEvent actionEvent) throws IOException {
-        Post post=new Post();
+        Post post=new Post(PostType.Normal);
         if(titleField.getText().isEmpty()){
             titleError.setVisible(true);
         }

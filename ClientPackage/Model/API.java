@@ -12,7 +12,7 @@ import java.util.Map;
 public class API {
     public static User getUser(String username){
         Map<String , Object> toSend=new HashMap<>();
-        toSend.put("Command" , Commands.GetUser);
+        toSend.put("command" , Commands.GetUser);
         toSend.put("username" , username);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
 
@@ -101,5 +101,14 @@ public class API {
 
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
         return (ArrayList<User>) received.get("answer");
+    }
+
+    public static void like(String username , Post post){
+    }
+
+    public static void comment(String username , Post post){
+    }
+
+    public static void repost(String username , Post post){
     }
 }

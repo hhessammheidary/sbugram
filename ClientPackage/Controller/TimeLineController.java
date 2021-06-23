@@ -31,7 +31,8 @@ public class TimeLineController {
         new PageLoader().load("AddPostPage");
     }
 
-    public void goToSearchPage(ActionEvent actionEvent) {
+    public void goToSearchPage(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("SearchPage");
     }
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {

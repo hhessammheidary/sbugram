@@ -48,6 +48,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="120.0" fitWidth="200.0" layoutX="50.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="postImage" fitHeight="120.0" fitWidth="200.0" layoutX="40.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="postDate" layoutX="33.0" layoutY="307.0" text="date" textFill="WHITE" />
+      <ImageView fx:id="repostIcon" fitHeight="23.0" fitWidth="40.0" layoutX="240.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/HP/Desktop/projeAP/repostIcone.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

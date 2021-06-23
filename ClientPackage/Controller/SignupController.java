@@ -1,6 +1,7 @@
 package ClientPackage.Controller;
 
 import ClientPackage.Model.API;
+import ClientPackage.Model.ClientToServer;
 import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
 import Commen.User;
@@ -42,6 +43,10 @@ public class SignupController {
     }
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
+        if (!ClientToServer.isConnected()){
+            System.out.println("not connected");
+        }
+
         String username=usernameField.getText();
         String password;
         if(passwordField.isVisible()){
@@ -120,13 +125,13 @@ public class SignupController {
                 new FileChooser.ExtensionFilter("JPG" , "*.jpg"));
         File file = fileChooser.showOpenDialog(stage);
         Image image=new Image(file.toURI().toString());
-        byte[] imageToByteArray = new byte[0];
+        byte[] imageToByteArray;
         try {
             imageToByteArray= Files.readAllBytes(file.toPath());
+            profileImageByteArray=imageToByteArray;
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-        profileImageByteArray=imageToByteArray;
         profileImg.setImage(image);
     }
 

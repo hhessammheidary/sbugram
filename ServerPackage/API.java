@@ -3,7 +3,6 @@ package ServerPackage;
 import Commen.Commands;
 import Commen.Post;
 import Commen.User;
-import javafx.geometry.Pos;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -148,5 +147,14 @@ public class API {
         answer.put("command" , Commands.SearchUser);
         answer.put("answer" , users);
         return answer;
+    }
+
+    public static void like(Map<String , Object> income){
+    }
+
+    public static void comment(Map<String , Object> income){
+    }
+
+    public static void repost(Map<String , Object> income){
     }
 }

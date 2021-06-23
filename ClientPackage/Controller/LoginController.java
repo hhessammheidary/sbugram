@@ -21,8 +21,8 @@ public class LoginController {
     public TextField usernameField;
     public PasswordField passwordField;
     public Label wrongPasswordLabel;
-    public Label userNotFoundLabel;
     public TextField passwordVisible;
+    public Label userNotFoundLabel;
     public CheckBox showPassword;
     public Button signUpButton;
     public Button forgetPassword;
@@ -31,59 +31,53 @@ public class LoginController {
 
     public void login(ActionEvent actionEvent) throws IOException {
         String username=usernameField.getText();
-        String password = null;
-
-        if (!ClientToServer.isConnected()){
-            System.out.println("not connected");
-        }
-
+        String password;
         if(passwordField.isVisible()){
-            password=passwordField.getText();
+            password = passwordField.getText();
         }
         else {
-            password=passwordVisible.getText();
+            password = passwordVisible.getText();
         }
 
-        User user=API.login(username , password);
-        if(user==null){
-            wrongPasswordLabel.setVisible(true);
+        if(!validUsername(username)){
             userNotFoundLabel.setVisible(true);
         }
-        else{
-            wrongPasswordLabel.setVisible(false);
-            userNotFoundLabel.setVisible(false);
-            Main.setUser(user);
-            new PageLoader().load("TimeLine");
+        else {
+            User user=API.login(username , password);
+            if(user == null){
+                wrongPasswordLabel.setVisible(true);
+            }
+            else{
+                wrongPasswordLabel.setVisible(false);
+                userNotFoundLabel.setVisible(false);
+                Main.setUser(user);
+                new PageLoader().load("TimeLine");
+            }
         }
     }
 
     public void showPassword(ActionEvent actionEvent) {
-        if (!ClientToServer.isConnected()){
-            System.out.println("not connected");
-        }
-        if(!passwordVisible.isVisible()){
+        if(passwordField.isVisible()){
             passwordField.setVisible(false);
             passwordVisible.setVisible(true);
             passwordVisible.setText(passwordField.getText());
         }
         else {
-            passwordVisible.setVisible(false);
             passwordField.setVisible(true);
+            passwordVisible.setVisible(false);
             passwordField.setText(passwordVisible.getText());
         }
     }
 
     public void signup(ActionEvent actionEvent) throws IOException {
-        if (!ClientToServer.isConnected()){
-            System.out.println("not connected");
-        }
         new PageLoader().load("Signup");
     }
 
     public void forgetPassword(ActionEvent actionEvent) throws IOException {
-        if (!ClientToServer.isConnected()){
-            System.out.println("not connected");
-        }
         new PageLoader().load("ForgetPassword");
+    }
+
+    public boolean validUsername(String username){
+        return API.isUserNameExists(username);
     }
 }
