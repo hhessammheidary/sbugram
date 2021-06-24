@@ -48,6 +48,7 @@ public class API {
         if(user==null){
             return answer;
         }
+        answer.put("command" , Commands.Login);
         answer.put("answer" , user);
         System.out.println(user.getUsername() + " : login");
         System.out.println("time : " + LocalDateTime.now());
@@ -85,7 +86,6 @@ public class API {
 
     public static Map<String , Object> addPost(Map<String , Object> income){
         Post post = (Post)income.get("newPost");
-        System.out.println(post.getTitle());
         String username = (String)income.get("username");
         Server.users.get(username).addPost(post);
         DataBaseManager.getInstance().updateDataBase();
@@ -101,7 +101,8 @@ public class API {
     public static Map<String , Object> timeLine(Map<String , Object> income){
         String username = (String)income.get("username");
         User user = Server.users.get(username);
-        ArrayList<Post> timeLinePosts = new ArrayList<>(Server.users.get(username).getPosts());
+        ArrayList<Post> timeLinePosts = new ArrayList<>();
+        timeLinePosts.addAll(Server.users.get(username).getPosts());
         if(!user.getFollowing().isEmpty()){
             for(int i=0;i<user.getFollowing().size();i++){
                 timeLinePosts.addAll(Server.users.get(user.getFollowing().get(i)).getPosts());
@@ -161,18 +162,17 @@ public class API {
         String username = (String)income.get("username");
         Post post = (Post)income.get("post");
         User user = Server.users.get(username);
-        Integer likeNum = 0;
         for(int i=0;i<user.getPosts().size();i++){
             if(user.getPosts().get(i).equals(post)){
-                likeNum = user.getPosts().get(i).likeOrDislikePost(username);
+                user.getPosts().get(i).likeOrDislikePost(username);
             }
         }
         DataBaseManager.getInstance().updateDataBase();
-        System.out.println(username + " : like " + post.getWriter() +"post (title:" + post.getTitle() +")");
+        System.out.println(username + " : like " + post.getWriter() +" post (title:" + post.getTitle() +")");
         System.out.println("time : " + LocalDateTime.now());
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.Like);
-        answer.put("answer" , likeNum);
+        answer.put("answer" , Boolean.TRUE);
         return answer;
     }
 
@@ -194,8 +194,50 @@ public class API {
         System.out.println(username + " : repost " + post.getWriter() +"post (title:" + post.getTitle() +")");
         System.out.println("time : " + LocalDateTime.now());
         Map<String , Object> answer=new HashMap<>();
-        answer.put("command" , Commands.Like);
+        answer.put("command" , Commands.Repost);
         answer.put("answer" , repostNum);
+        return answer;
+    }
+
+    public static Map<String , Object> changeFirstname(Map<String , Object> income){
+        String username = (String)income.get("username");
+        String newPassword = (String)income.get("newPassword");
+        Server.users.get(username).changePassword(newPassword);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : change firstname");
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.ChangePassword);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String , Object> changeLastname(Map<String , Object> income){
+        String username = (String)income.get("username");
+        String newPassword = (String)income.get("newPassword");
+        Server.users.get(username).changePassword(newPassword);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : change lastname");
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.ChangePassword);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String , Object> changePhoneNumber(Map<String , Object> income){
+        String username = (String)income.get("username");
+        String newPassword = (String)income.get("newPassword");
+        Server.users.get(username).changePassword(newPassword);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : change phone number");
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.ChangePassword);
+        answer.put("answer" , Boolean.TRUE);
         return answer;
     }
 }

@@ -72,6 +72,15 @@ public class ClientHandler implements Runnable{
                     case Repost:
                         answer=API.repost(income);
                         break;
+                    case ChangeFirstname:
+                        answer=API.changeFirstname(income);
+                        break;
+                    case ChangeLastname:
+                        answer=API.changeLastname(income);
+                        break;
+                    case ChangePhoneNumber:
+                        answer=API.changePhoneNumber(income);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

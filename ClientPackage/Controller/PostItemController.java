@@ -16,6 +16,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class PostItemController {
     public Post post;
@@ -43,14 +46,14 @@ public class PostItemController {
         usernameLabel.setText(post.getWriter());
         titleLabel.setText(post.getTitle());
         description.setText(post.getDescription());
-        likeNumberLabel.setText(API.like(post.getWriter() , post).toString());
+        likeNumberLabel.setText(Integer.toString(post.likeNum()));
         if(post.getPostImageByteArray()!=null){
             postImage.setImage(new Image(new ByteArrayInputStream(post.getPostImageByteArray())));
         }
-        //LocalDate dateTime = post.getDate();
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        //String dateAsString = dateFormat.format(dateTime);
-        //postDate.setText(dateAsString);
+        LocalDate dateTime = post.getDate();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateAsString = dateFormat.format(dateTime);
+        postDate.setText(dateAsString);
         if(post.getIsRepost()){
             repostIcon.setVisible(true);
         }

@@ -55,15 +55,17 @@ public class Post implements Serializable , Comparable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Integer likeOrDislikePost(String username) {
+    public void likeOrDislikePost(String username) {
         if(likes.contains(username)){
             likes.remove(username);
-            return likes.size();
         }
         else{
             likes.add(username);
-            return likes.size();
         }
+    }
+
+    public int likeNum(){
+        return likes.size();
     }
 
     public Integer repost(String username) {

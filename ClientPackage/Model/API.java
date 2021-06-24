@@ -102,14 +102,14 @@ public class API {
         return (ArrayList<Post>)received.get("answer");
     }
 
-    public static Integer like(String username , Post post){
+    public static Boolean like(String username , Post post){
         Map<String , Object> toSend=new HashMap<>();
         toSend.put("command" , Commands.Like);
         toSend.put("username" , username);
         toSend.put("post" , post);
 
         Map<String , Object> received=ClientToServer.sendToServer(toSend);
-        return (Integer) received.get("answer");
+        return (Boolean) received.get("answer");
     }
 
     public static void comment(String username , Post post){

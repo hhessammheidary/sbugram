@@ -24,10 +24,11 @@ public class SearchPageController {
 
     private ArrayList<User> users=new ArrayList<>();
 
-    public void searchUsername(ActionEvent actionEvent) {
+    public void searchUsername(ActionEvent actionEvent) throws IOException {
         if(!searchUsernameTextField.getText().isEmpty()){
             if(API.SearchUser(searchUsernameTextField.getText())!=null){
                 users=API.SearchUser(searchUsernameTextField.getText());
+                initialize();
             }
         }
     }

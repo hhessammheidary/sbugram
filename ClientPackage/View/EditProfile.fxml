@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.EditProfileController">
+   <children>
+      <ToolBar layoutY="547.0" prefHeight="57.0" prefWidth="300.0" style="-fx-background-color: #001701;">
+         <items>
+            <Button fx:id="timeLineButton" mnemonicParsing="false" onAction="#goToTimeLinePage" prefHeight="40.0" prefWidth="69.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/homeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="addPostButton" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#goToAddPostPage" prefHeight="40.0" prefWidth="69.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/postIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="searchPageButton" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="40.0" prefWidth="69.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/searchIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="profileButton" layoutX="122.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="40.0" prefWidth="69.0" style="-fx-background-color: #323232;">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/profileIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </items>
+      </ToolBar>
+      <Button fx:id="backToProfilePageButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToProfilePage" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #323232;" text="Back" textFill="WHITE" />
+      <Label layoutX="24.0" layoutY="124.0" text="firstname:" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="176.0" text="lastname:" textFill="WHITE" />
+      <Label layoutX="24.0" layoutY="294.0" text="password:" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="238.0" text="phonenumber:" textFill="WHITE" />
+      <TextField fx:id="firstnameField" layoutX="128.0" layoutY="120.0" prefHeight="25.0" prefWidth="149.0" promptText="firstname" style="-fx-background-color: #323232;" />
+      <TextField fx:id="lastnameField" layoutX="128.0" layoutY="172.0" promptText="lastname" style="-fx-background-color: #323232;" />
+      <TextField fx:id="phonenumberField" layoutX="128.0" layoutY="234.0" promptText="phonenumber" style="-fx-background-color: #323232;" />
+      <TextField fx:id="passwordVisible" layoutX="128.0" layoutY="290.0" promptText="password" style="-fx-background-color: #323232;" />
+      <ImageView fitHeight="63.0" fitWidth="129.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="doneButton" layoutX="202.0" layoutY="456.0" mnemonicParsing="false" onAction="#done" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #323232;" text="Done" textFill="WHITE" />
+      <PasswordField fx:id="passwordField" layoutX="128.0" layoutY="290.0" prefHeight="25.0" prefWidth="149.0" promptText="password" style="-fx-background-color: #323232;" />
+      <CheckBox fx:id="showPassword" layoutX="229.0" layoutY="337.0" mnemonicParsing="false" onAction="#showPass" text="show" textFill="WHITE" />
+      <Label fx:id="passwordWarning" layoutX="129.0" layoutY="320.0" text="not safe,try again" textFill="RED" />
+   </children>
+</AnchorPane>

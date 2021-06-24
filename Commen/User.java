@@ -17,9 +17,9 @@ public class User implements  Serializable {
     private String phoneNumber;
     private byte[] profileImageByteArray;
     private String favFood;
-    private static List<Post> posts=new ArrayList<>();
-    private static List<String> followers = new ArrayList<>();
-    private static List<String> following = new ArrayList<>();
+    private List<Post> posts=new ArrayList<>();
+    private List<String> followers = new ArrayList<>();
+    private List<String> following = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
