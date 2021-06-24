@@ -23,7 +23,6 @@ public class Main extends Application {
     }
 
     public static User getUser() {
-        user=API.getUser(user.getUsername());
         return user;
     }
 

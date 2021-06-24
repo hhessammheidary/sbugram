@@ -54,14 +54,23 @@ public class ClientHandler implements Runnable{
                     case TimeLine:
                         answer=API.timeLine(income);
                         break;
-                    case GetUser:
-                        answer=API.getUser(income);
-                        break;
                     case DeleteAccount:
                         answer=API.deleteAccount(income);
                         break;
                     case SearchUser:
                         answer=API.searchUser(income);
+                        break;
+                    case GetUserPosts:
+                        answer=API.getUserPost(income);
+                        break;
+                    case Like:
+                        answer=API.like(income);
+                        break;
+                    case Comment:
+                        API.comment(income);
+                        break;
+                    case Repost:
+                        answer=API.repost(income);
                         break;
                 }
                 socketOut.writeObject(answer);

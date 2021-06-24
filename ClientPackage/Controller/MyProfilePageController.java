@@ -36,6 +36,7 @@ public class MyProfilePageController {
     public static ArrayList<Post> posts=new ArrayList<>(Main.getUser().getPosts());
 
     public void initialize() throws IOException {
+        loadPosts();
         User user=Main.getUser();
         if(user.getProfileImage()!=null){
             profileImage.setImage(new Image(new ByteArrayInputStream(user.getProfileImage())));
@@ -79,5 +80,9 @@ public class MyProfilePageController {
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("MyProfilePage");
+    }
+
+    public void loadPosts(){
+        posts = API.getUserPosts(Main.getUser().getUsername());
     }
 }

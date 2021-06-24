@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.*;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -19,9 +20,9 @@ public class Post implements Serializable , Comparable {
     private String description;
     private final LocalDateTime dateWithTime;
     private final LocalDate date;
-    private Map<String , Post> likes=new ConcurrentHashMap<>();
-    private Map<String , Post> reposts=new ConcurrentHashMap<>();
-    private Map<String , Post> comments=new ConcurrentHashMap<>();
+    private Vector<String> likes=new Vector<>();
+    private Vector<String> reposts=new Vector<>();
+    private Map<String , Comment> comments=new ConcurrentHashMap<>();
     private boolean isRepost=false;
     private byte[] postImageByteArray;
 
@@ -54,17 +55,24 @@ public class Post implements Serializable , Comparable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public void likePost(String username , Post post) {
-        likes.put(username , post);
+    public Integer likeOrDislikePost(String username) {
+        if(likes.contains(username)){
+            likes.remove(username);
+            return likes.size();
+        }
+        else{
+            likes.add(username);
+            return likes.size();
+        }
     }
 
-    public void repost(String username , Post post) {
-        reposts.put(username, post);
+    public Integer repost(String username) {
+        reposts.add(username);
+        return reposts.size();
     }
 
-    public void comment(String username , Post post) {
-        comments.put(username, post);
+    public void comment(String username , Comment comment) {
+        comments.put(username , comment);
     }
 
     public byte[]  getPostImageByteArray() {
@@ -83,8 +91,12 @@ public class Post implements Serializable , Comparable {
         return dateWithTime;
     }
 
-    public Boolean isRepost(){
+    public Boolean getIsRepost(){
         return isRepost;
+    }
+
+    public void setRepost(){
+        isRepost=true;
     }
 
     public boolean equals(Object o){

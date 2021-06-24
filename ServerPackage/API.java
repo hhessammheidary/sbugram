@@ -9,14 +9,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class API {
-    public static Map<String , Object> getUser(Map<String , Object> income){
-        String username=(String) income.get("username");
-        Map<String , Object> answer=new HashMap<>();
-        answer.put("command" , Commands.GetUser);
-        answer.put("answer" , Server.users.get(username));
-
-        return answer;
-    }
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
 
         String usernameToCheck = (String) income.get("username");
@@ -83,6 +75,7 @@ public class API {
         Server.users.get(username).changePassword(newPassword);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : change password");
+        System.out.println("time : " + LocalDateTime.now());
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.ChangePassword);
@@ -97,6 +90,7 @@ public class API {
         Server.users.get(username).addPost(post);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : add post");
+        System.out.println("time : " + LocalDateTime.now());
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.AddPost);
@@ -113,7 +107,8 @@ public class API {
                 timeLinePosts.addAll(Server.users.get(user.getFollowing().get(i)).getPosts());
             }
         }
-        timeLinePosts = (ArrayList<Post>) timeLinePosts.stream().sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime())).collect(Collectors.toList());
+        timeLinePosts = (ArrayList<Post>) timeLinePosts.stream().sorted((p1 , p2) ->-p1.getDateWithTime().
+                compareTo(p2.getDateWithTime())).collect(Collectors.toList());
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.TimeLine);
@@ -126,6 +121,7 @@ public class API {
         Server.users.remove(username);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : delete account");
+        System.out.println("time : " + LocalDateTime.now());
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.DeleteAccount);
@@ -138,7 +134,7 @@ public class API {
         Collection<User> values = Server.users.values();
         ArrayList<User> users=new ArrayList<>(values);
         for (int i=users.size()-1;i>=0;i--){
-            if(!users.get(i).getUsername().contains(words)){
+            if(!users.get(i).getUsername().startsWith(words)){
                 users.remove(i);
             }
         }
@@ -149,12 +145,57 @@ public class API {
         return answer;
     }
 
-    public static void like(Map<String , Object> income){
+    public static Map<String, Object> getUserPost(Map<String, Object> income) {
+        String username = (String)income.get("username");
+        ArrayList<Post> posts=new ArrayList<>(Server.users.get(username).getPosts());
+        posts = (ArrayList<Post>) posts.stream().sorted((p1 , p2) ->-p1.getDateWithTime().
+                compareTo(p2.getDateWithTime())).collect(Collectors.toList());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.GetUserPosts);
+        answer.put("answer" , posts);
+        return answer;
+    }
+
+    public static Map<String, Object> like(Map<String , Object> income){
+        String username = (String)income.get("username");
+        Post post = (Post)income.get("post");
+        User user = Server.users.get(username);
+        Integer likeNum = 0;
+        for(int i=0;i<user.getPosts().size();i++){
+            if(user.getPosts().get(i).equals(post)){
+                likeNum = user.getPosts().get(i).likeOrDislikePost(username);
+            }
+        }
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : like " + post.getWriter() +"post (title:" + post.getTitle() +")");
+        System.out.println("time : " + LocalDateTime.now());
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.Like);
+        answer.put("answer" , likeNum);
+        return answer;
     }
 
     public static void comment(Map<String , Object> income){
     }
 
-    public static void repost(Map<String , Object> income){
+    public static Map<String, Object> repost(Map<String , Object> income){
+        String username = (String)income.get("username");
+        Post post = (Post)income.get("post");
+        User postOwner=Server.users.get(post.getWriter());
+        Integer repostNum=0;
+        for(int i=0;i<postOwner.getPosts().size();i++){
+            if(postOwner.getPosts().get(i).equals(post)){
+                repostNum=postOwner.getPosts().get(i).repost(username);
+            }
+        }
+        Server.users.get(username).addPost(post);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : repost " + post.getWriter() +"post (title:" + post.getTitle() +")");
+        System.out.println("time : " + LocalDateTime.now());
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.Like);
+        answer.put("answer" , repostNum);
+        return answer;
     }
 }

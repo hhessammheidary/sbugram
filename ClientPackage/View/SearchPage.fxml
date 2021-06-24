@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.SearchPageController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #001701;">
@@ -25,8 +24,8 @@
             </Button>
         </items>
       </ToolBar>
-      <ListView fx:id="listView" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="513.0" prefWidth="300.0" />
-      <ToolBar layoutY="552.0" prefHeight="57.0" prefWidth="300.0" style="-fx-background-color: #001701;">
+      <ListView fx:id="listView" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" prefWidth="300.0" />
+      <ToolBar layoutY="547.0" prefHeight="57.0" prefWidth="300.0" style="-fx-background-color: #001701;">
          <items>
             <Button fx:id="timeLineButton" mnemonicParsing="false" onAction="#goToTimeLinePage" prefHeight="40.0" prefWidth="69.0" style="-fx-background-color: #323232;">
                <graphic>

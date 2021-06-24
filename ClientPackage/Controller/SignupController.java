@@ -116,7 +116,6 @@ public class SignupController {
         }
     }
 
-    final FileChooser fileChooser=new FileChooser();
     public void addProfile(ActionEvent actionEvent) {
         Stage stage=new Stage();
         final FileChooser fileChooser = new FileChooser();

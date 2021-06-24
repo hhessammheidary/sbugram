@@ -4,21 +4,11 @@ import Commen.Commands;
 import Commen.Post;
 import Commen.User;
 
-import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class API {
-    public static User getUser(String username){
-        Map<String , Object> toSend=new HashMap<>();
-        toSend.put("command" , Commands.GetUser);
-        toSend.put("username" , username);
-        Map<String , Object> received = ClientToServer.sendToServer(toSend);
-
-        return (User)received.get("answer");
-    }
-
     public static boolean isUserNameExists(String usernameToCheck){
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Commands.IsUsernameUnique);
@@ -103,7 +93,23 @@ public class API {
         return (ArrayList<User>) received.get("answer");
     }
 
-    public static void like(String username , Post post){
+    public static ArrayList<Post> getUserPosts(String username){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.GetUserPosts);
+        toSend.put("username" , username);
+
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (ArrayList<Post>)received.get("answer");
+    }
+
+    public static Integer like(String username , Post post){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.Like);
+        toSend.put("username" , username);
+        toSend.put("post" , post);
+
+        Map<String , Object> received=ClientToServer.sendToServer(toSend);
+        return (Integer) received.get("answer");
     }
 
     public static void comment(String username , Post post){
