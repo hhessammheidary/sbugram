@@ -176,6 +176,22 @@ public class API {
         return answer;
     }
 
+    public static Map<String, Object> getLikeNumber(Map<String , Object> income){
+        String username = (String)income.get("username");
+        Post post = (Post)income.get("post");
+        User user = Server.users.get(username);
+        int likeNum=0;
+        for(int i=0;i<user.getPosts().size();i++){
+            if(user.getPosts().get(i).equals(post)){
+                likeNum=user.getPosts().get(i).likeNum();
+            }
+        }
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.LikeNumber);
+        answer.put("answer" , likeNum);
+        return answer;
+    }
+
     public static void comment(Map<String , Object> income){
     }
 
@@ -201,42 +217,42 @@ public class API {
 
     public static Map<String , Object> changeFirstname(Map<String , Object> income){
         String username = (String)income.get("username");
-        String newPassword = (String)income.get("newPassword");
-        Server.users.get(username).changePassword(newPassword);
+        String newFirstname = (String)income.get("newFirstname");
+        Server.users.get(username).changeFirstname(newFirstname);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : change firstname");
         System.out.println("time : " + LocalDateTime.now());
 
         Map<String , Object> answer=new HashMap<>();
-        answer.put("command" , Commands.ChangePassword);
+        answer.put("command" , Commands.ChangeFirstname);
         answer.put("answer" , Boolean.TRUE);
         return answer;
     }
 
     public static Map<String , Object> changeLastname(Map<String , Object> income){
         String username = (String)income.get("username");
-        String newPassword = (String)income.get("newPassword");
-        Server.users.get(username).changePassword(newPassword);
+        String newLastname = (String)income.get("newLastname");
+        Server.users.get(username).changeLastname(newLastname);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : change lastname");
         System.out.println("time : " + LocalDateTime.now());
 
         Map<String , Object> answer=new HashMap<>();
-        answer.put("command" , Commands.ChangePassword);
+        answer.put("command" , Commands.ChangeLastname);
         answer.put("answer" , Boolean.TRUE);
         return answer;
     }
 
     public static Map<String , Object> changePhoneNumber(Map<String , Object> income){
         String username = (String)income.get("username");
-        String newPassword = (String)income.get("newPassword");
-        Server.users.get(username).changePassword(newPassword);
+        String newPhoneNumber = (String)income.get("newPhoneNumber");
+        Server.users.get(username).changePhoneNumber(newPhoneNumber);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(username + " : change phone number");
         System.out.println("time : " + LocalDateTime.now());
 
         Map<String , Object> answer=new HashMap<>();
-        answer.put("command" , Commands.ChangePassword);
+        answer.put("command" , Commands.ChangePhoneNumber);
         answer.put("answer" , Boolean.TRUE);
         return answer;
     }

@@ -66,6 +66,9 @@ public class ClientHandler implements Runnable{
                     case Like:
                         answer=API.like(income);
                         break;
+                    case LikeNumber:
+                        answer=API.getLikeNumber(income);
+                        break;
                     case Comment:
                         API.comment(income);
                         break;

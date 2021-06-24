@@ -46,7 +46,7 @@ public class TimeLineController {
     }
 
     public void refreshPosts(ActionEvent actionEvent) throws IOException {
-        loadPosts();
+        initialize();
     }
 
     public void loadPosts() throws IOException {

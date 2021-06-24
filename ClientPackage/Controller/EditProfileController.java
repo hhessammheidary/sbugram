@@ -45,7 +45,7 @@ public class EditProfileController {
         new PageLoader().load("MyProfilePage");
     }
 
-    public void done(ActionEvent actionEvent) {
+    public void done(ActionEvent actionEvent) throws IOException {
         String password;
         if(passwordField.isVisible()){
             password=passwordField.getText();
@@ -63,8 +63,15 @@ public class EditProfileController {
             }
         }
         if(!firstnameField.getText().isEmpty()){
-
+            API.changeFirstname(Main.getUser().getUsername() , firstnameField.getText());
         }
+        if(!lastnameField.getText().isEmpty()){
+            API.changeLastname(Main.getUser().getUsername() , lastnameField.getText());
+        }
+        if(!phonenumberField.getText().isEmpty()){
+            API.changePhoneNumber(Main.getUser().getUsername() , phonenumberField.getText());
+        }
+        new PageLoader().load("MyProfilePage");
     }
 
     public void showPass(ActionEvent actionEvent) {

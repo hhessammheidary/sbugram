@@ -46,14 +46,14 @@ public class PostItemController {
         usernameLabel.setText(post.getWriter());
         titleLabel.setText(post.getTitle());
         description.setText(post.getDescription());
-        likeNumberLabel.setText(Integer.toString(post.likeNum()));
+        likeNumberLabel.setText(String.valueOf(API.getLikeNumber(post.getWriter() , post)));
         if(post.getPostImageByteArray()!=null){
             postImage.setImage(new Image(new ByteArrayInputStream(post.getPostImageByteArray())));
         }
-        LocalDate dateTime = post.getDate();
+        /*LocalDate dateTime = post.getDate();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateAsString = dateFormat.format(dateTime);
-        postDate.setText(dateAsString);
+        postDate.setText(dateAsString);*/
         if(post.getIsRepost()){
             repostIcon.setVisible(true);
         }
@@ -64,7 +64,8 @@ public class PostItemController {
     }
 
     public void likePost(ActionEvent actionEvent) {
-        likeNumberLabel.setText(API.like(post.getWriter() , post).toString());
+        API.like(post.getWriter() , post);
+        likeNumberLabel.setText(String.valueOf(API.getLikeNumber(post.getWriter() , post)));
     }
 
     public void repostPost(ActionEvent actionEvent) {

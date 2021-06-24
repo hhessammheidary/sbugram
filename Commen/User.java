@@ -61,6 +61,18 @@ public class User implements  Serializable {
         this.password = password;
     }
 
+    public void changeFirstname(String name) {
+        this.name = name;
+    }
+
+    public void changeLastname(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void changePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getFavFood() {
         return favFood;
     }

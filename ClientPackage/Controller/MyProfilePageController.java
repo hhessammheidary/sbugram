@@ -50,8 +50,8 @@ public class MyProfilePageController {
         postList.setCellFactory(postList -> new PostItem());
     }
 
-    public void editProfile(ActionEvent actionEvent) {
-
+    public void editProfile(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("EditProfile");
     }
 
     public void deleteAccount(ActionEvent actionEvent) {

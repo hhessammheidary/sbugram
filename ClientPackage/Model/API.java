@@ -112,9 +112,48 @@ public class API {
         return (Boolean) received.get("answer");
     }
 
+    public static int getLikeNumber(String username , Post post){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.LikeNumber);
+        toSend.put("username" , username);
+        toSend.put("post" , post);
+
+        Map<String , Object> received=ClientToServer.sendToServer(toSend);
+        return (Integer) received.get("answer");
+    }
+
     public static void comment(String username , Post post){
     }
 
     public static void repost(String username , Post post){
     }
+
+    public static boolean changeFirstname(String username , String newFirstname){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("username" , username);
+        toSend.put("newFirstname" , newFirstname);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (boolean)received.get("answer");
+    }
+
+    public static boolean changeLastname(String username , String newLastname){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("username" , username);
+        toSend.put("newLastname" , newLastname);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (boolean)received.get("answer");
+    }
+
+    public static boolean changePhoneNumber(String username , String newPhoneNumber){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("username" , username);
+        toSend.put("newPhoneNumber" , newPhoneNumber);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (boolean)received.get("answer");
+    }
+
+
 }
