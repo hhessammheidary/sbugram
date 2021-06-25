@@ -3,12 +3,21 @@ package ClientPackage.Controller;
 import ClientPackage.Model.API;
 import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
+import Commen.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static ClientPackage.Model.API.changePassword;
 
 public class EditProfileController {
     public Button timeLineButton;
@@ -24,6 +33,10 @@ public class EditProfileController {
     public PasswordField passwordField;
     public CheckBox showPassword;
     public Label passwordWarning;
+    public ImageView profileImage;
+    public Button changeProfileButton;
+    public byte[] profileImageByteArray;
+    public User user = Main.getUser();
 
     public void goToTimeLinePage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("TimeLine");
@@ -59,7 +72,7 @@ public class EditProfileController {
             }
             else {
                 passwordWarning.setVisible(false);
-                changePassword(Main.getUser().getUsername() , password);
+                API.changePassword(Main.getUser().getUsername() , password);
             }
         }
         if(!firstnameField.getText().isEmpty()){
@@ -94,7 +107,21 @@ public class EditProfileController {
         return matcher.matches();
     }
 
-    public void changePassword(String username , String newPassword){
-        API.changePassword(username , newPassword);
+    public void changeProfile(ActionEvent actionEvent) {
+        Stage stage=new Stage();
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("select profile");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG" , "*.png") ,
+                new FileChooser.ExtensionFilter("JPG" , "*.jpg"));
+        File file = fileChooser.showOpenDialog(stage);
+        Image image=new Image(file.toURI().toString());
+        byte[] imageToByteArray;
+        try {
+            imageToByteArray= Files.readAllBytes(file.toPath());
+            profileImageByteArray=imageToByteArray;
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        profileImage.setImage(image);
     }
 }

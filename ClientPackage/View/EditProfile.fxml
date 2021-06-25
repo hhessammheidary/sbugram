@@ -53,18 +53,24 @@
          </items>
       </ToolBar>
       <Button fx:id="backToProfilePageButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToProfilePage" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #323232;" text="Back" textFill="WHITE" />
-      <Label layoutX="24.0" layoutY="124.0" text="firstname:" textFill="WHITE" />
-      <Label layoutX="23.0" layoutY="176.0" text="lastname:" textFill="WHITE" />
-      <Label layoutX="24.0" layoutY="294.0" text="password:" textFill="WHITE" />
-      <Label layoutX="23.0" layoutY="238.0" text="phonenumber:" textFill="WHITE" />
-      <TextField fx:id="firstnameField" layoutX="128.0" layoutY="120.0" prefHeight="25.0" prefWidth="149.0" promptText="firstname" style="-fx-background-color: #323232;" />
-      <TextField fx:id="lastnameField" layoutX="128.0" layoutY="172.0" promptText="lastname" style="-fx-background-color: #323232;" />
-      <TextField fx:id="phonenumberField" layoutX="128.0" layoutY="234.0" promptText="phonenumber" style="-fx-background-color: #323232;" />
-      <TextField fx:id="passwordVisible" layoutX="128.0" layoutY="290.0" promptText="password" style="-fx-background-color: #323232;" />
+      <Label layoutX="22.0" layoutY="203.0" text="firstname:" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="252.0" text="lastname:" textFill="WHITE" />
+      <Label layoutX="24.0" layoutY="350.0" text="password:" textFill="WHITE" />
+      <Label layoutX="23.0" layoutY="303.0" text="phonenumber:" textFill="WHITE" />
+      <TextField fx:id="firstnameField" layoutX="115.0" layoutY="199.0" prefHeight="25.0" prefWidth="149.0" promptText="firstname" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
+      <TextField fx:id="lastnameField" layoutX="115.0" layoutY="248.0" promptText="lastname" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
+      <TextField fx:id="phonenumberField" layoutX="115.0" layoutY="299.0" promptText="phonenumber" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
+      <TextField fx:id="passwordVisible" layoutX="115.0" layoutY="347.0" promptText="password" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" visible="false" />
       <ImageView fitHeight="63.0" fitWidth="129.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="doneButton" layoutX="202.0" layoutY="456.0" mnemonicParsing="false" onAction="#done" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #323232;" text="Done" textFill="WHITE" />
-      <PasswordField fx:id="passwordField" layoutX="128.0" layoutY="290.0" prefHeight="25.0" prefWidth="149.0" promptText="password" style="-fx-background-color: #323232;" />
-      <CheckBox fx:id="showPassword" layoutX="229.0" layoutY="337.0" mnemonicParsing="false" onAction="#showPass" text="show" textFill="WHITE" />
-      <Label fx:id="passwordWarning" layoutX="129.0" layoutY="320.0" text="not safe,try again" textFill="RED" />
+      <PasswordField fx:id="passwordField" layoutX="115.0" layoutY="347.0" prefHeight="25.0" prefWidth="149.0" promptText="password" style="-fx-background-color: #323232; -fx-text-fill: #F8F5F5;" />
+      <CheckBox fx:id="showPassword" layoutX="229.0" layoutY="389.0" mnemonicParsing="false" onAction="#showPass" text="show" textFill="WHITE" />
+      <Label fx:id="passwordWarning" layoutX="115.0" layoutY="377.0" text="not safe,try again" textFill="RED" visible="false" />
+      <ImageView fx:id="profileImage" fitHeight="100.0" fitWidth="99.0" layoutX="101.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/HP/Desktop/projeAP/PngItem_1468479.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="changeProfileButton" layoutX="105.0" layoutY="129.0" mnemonicParsing="false" onAction="#changeProfile" style="-fx-background-color: #323232;" text="change profile" textFill="WHITE" />
    </children>
 </AnchorPane>

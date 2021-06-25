@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5, 0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.MyProfilePageController">
+<SplitPane dividerPositions="0.5, 0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPackage.Controller.MyProfilePageController">
     <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="302.0" style="-fx-background-color: #001701;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="300.0" style="-fx-background-color: #001701;">
             <children>
                 <ImageView fx:id="profileImage" fitHeight="100.0" fitWidth="100.0" layoutX="24.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -52,7 +52,7 @@
                 <Button fx:id="deleteAccountButton" layoutX="169.0" layoutY="249.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #323232;" text="delete account" textFill="WHITE" />
             <Button fx:id="logoutButton" layoutX="229.0" layoutY="15.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #323232;" text="logout" textFill="WHITE" />
             </children></AnchorPane>
-        <ListView fx:id="postList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="238.0" prefWidth="298.0" />
+        <ListView fx:id="postList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="238.0" prefWidth="300.0" />
         <ToolBar prefHeight="57.0" prefWidth="300.0" style="-fx-background-color: #001701;">
             <items>
                 <Button fx:id="timeLineButton" mnemonicParsing="false" onAction="#goToTimeLinePage" prefHeight="40.0" prefWidth="68.0" style="-fx-background-color: #323232;">

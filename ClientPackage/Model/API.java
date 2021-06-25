@@ -154,6 +154,4 @@ public class API {
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
         return (boolean)received.get("answer");
     }
-
-
 }
