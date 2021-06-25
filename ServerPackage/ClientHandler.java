@@ -84,6 +84,9 @@ public class ClientHandler implements Runnable{
                     case ChangePhoneNumber:
                         answer=API.changePhoneNumber(income);
                         break;
+                    case ChangeProfileImage:
+                        answer=API.changeProfileImage(income);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

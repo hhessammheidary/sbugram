@@ -128,30 +128,39 @@ public class API {
     public static void repost(String username , Post post){
     }
 
-    public static boolean changeFirstname(String username , String newFirstname){
+    public static User changeFirstname(String username , String newFirstname){
         Map<String , Object> toSend = new HashMap<>();
-        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("command" , Commands.ChangeFirstname);
         toSend.put("username" , username);
         toSend.put("newFirstname" , newFirstname);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
-        return (boolean)received.get("answer");
+        return (User) received.get("answer");
     }
 
-    public static boolean changeLastname(String username , String newLastname){
+    public static User changeLastname(String username , String newLastname){
         Map<String , Object> toSend = new HashMap<>();
-        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("command" , Commands.ChangeLastname);
         toSend.put("username" , username);
         toSend.put("newLastname" , newLastname);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
-        return (boolean)received.get("answer");
+        return (User) received.get("answer");
     }
 
-    public static boolean changePhoneNumber(String username , String newPhoneNumber){
+    public static User changePhoneNumber(String username , String newPhoneNumber){
         Map<String , Object> toSend = new HashMap<>();
-        toSend.put("command" , Commands.ChangePassword);
+        toSend.put("command" , Commands.ChangePhoneNumber);
         toSend.put("username" , username);
         toSend.put("newPhoneNumber" , newPhoneNumber);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
-        return (boolean)received.get("answer");
+        return (User)received.get("answer");
+    }
+
+    public static User changeProfileImage(String username , byte[] newProfileImage){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.ChangeProfileImage);
+        toSend.put("username" , username);
+        toSend.put("newProfileImage" , newProfileImage);
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (User)received.get("answer");
     }
 }

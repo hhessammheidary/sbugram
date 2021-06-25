@@ -80,6 +80,7 @@ public class MyProfilePageController {
 
     public void goToProfilePage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("MyProfilePage");
+        initialize();
     }
 
     public void loadPosts(){

@@ -76,13 +76,16 @@ public class EditProfileController {
             }
         }
         if(!firstnameField.getText().isEmpty()){
-            API.changeFirstname(Main.getUser().getUsername() , firstnameField.getText());
+            Main.setUser(API.changeFirstname(Main.getUser().getUsername() , firstnameField.getText()));
         }
         if(!lastnameField.getText().isEmpty()){
-            API.changeLastname(Main.getUser().getUsername() , lastnameField.getText());
+            Main.setUser(API.changeLastname(Main.getUser().getUsername() , lastnameField.getText()));
         }
         if(!phonenumberField.getText().isEmpty()){
-            API.changePhoneNumber(Main.getUser().getUsername() , phonenumberField.getText());
+            Main.setUser(API.changePhoneNumber(Main.getUser().getUsername() , phonenumberField.getText()));
+        }
+        if(profileImageByteArray!=null){
+            Main.setUser(API.changeProfileImage(Main.getUser().getUsername() , profileImageByteArray));
         }
         new PageLoader().load("MyProfilePage");
     }

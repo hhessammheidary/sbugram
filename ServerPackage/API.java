@@ -225,7 +225,7 @@ public class API {
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.ChangeFirstname);
-        answer.put("answer" , Boolean.TRUE);
+        answer.put("answer" , Server.users.get(username));
         return answer;
     }
 
@@ -239,7 +239,7 @@ public class API {
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.ChangeLastname);
-        answer.put("answer" , Boolean.TRUE);
+        answer.put("answer" , Server.users.get(username));
         return answer;
     }
 
@@ -253,7 +253,21 @@ public class API {
 
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.ChangePhoneNumber);
-        answer.put("answer" , Boolean.TRUE);
+        answer.put("answer" , Server.users.get(username));
+        return answer;
+    }
+
+    public static Map<String, Object> changeProfileImage(Map<String, Object> income) {
+        String username = (String)income.get("username");
+        byte[] newProfileImage = (byte[]) income.get("newProfileImage");
+        Server.users.get(username).setProfileImage(newProfileImage);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(username + " : change profile image");
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.ChangePhoneNumber);
+        answer.put("answer" , Server.users.get(username));
         return answer;
     }
 }
