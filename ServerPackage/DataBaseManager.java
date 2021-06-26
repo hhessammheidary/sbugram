@@ -35,7 +35,7 @@ public class DataBaseManager {
         try {
             FileOutputStream fileOutputStream1 = new FileOutputStream(userFile);
             ObjectOutputStream objToFile1 = new ObjectOutputStream(fileOutputStream1);
-            objToFile1.writeObject(Server.users); //writing users
+            objToFile1.writeUnshared(Server.users); //writing users
             objToFile1.close();
             fileOutputStream1.close();
         } catch (IOException e) {

@@ -48,6 +48,7 @@ public class PostItemController {
         description.setText(post.getDescription());
         likeNumberLabel.setText(String.valueOf(API.getLikeNumber(post.getWriter() , post)));
         repostNumberLabel.setText(String.valueOf(API.getRepostNumber(post.getWriter() , post)));
+        commentNumberLabel.setText(String.valueOf(API.getCommentNumber(post.getWriter() , post)));
         if(post.getPostImageByteArray()!=null){
             postImage.setImage(new Image(new ByteArrayInputStream(post.getPostImageByteArray())));
         }

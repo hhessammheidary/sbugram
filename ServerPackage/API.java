@@ -165,7 +165,7 @@ public class API {
     public static Map<String, Object> like(Map<String , Object> income){
         String username = (String)income.get("username");
         Post post = (Post)income.get("post");
-        User user = Server.users.get(username);
+        User user = Server.users.get(post.getWriter());
         for(int i=0;i<user.getPosts().size();i++){
             if(user.getPosts().get(i).equals(post)){
                 user.getPosts().get(i).likeOrDislikePost(username);

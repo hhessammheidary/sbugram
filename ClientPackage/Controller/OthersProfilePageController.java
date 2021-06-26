@@ -54,8 +54,8 @@ public class OthersProfilePageController {
             profileImage.setImage(new Image(new ByteArrayInputStream(user.getProfileImage())));
         }
         usernameLabel.setText(user.getUsername());
-        followerNumberLabel.setText(Integer.toString(API.getFollowerNumber(Main.getOtherUsernameToSearch().getUsername())));
-        followingNumberLabel.setText(Integer.toString(API.getFollowingNumber(Main.getOtherUsernameToSearch().getUsername())));
+        followerNumberLabel.setText(String.valueOf(API.getFollowerNumber(Main.getOtherUsernameToSearch().getUsername())));
+        followingNumberLabel.setText(String.valueOf(API.getFollowingNumber(Main.getOtherUsernameToSearch().getUsername())));
         firstnameLabel.setText(user.getName());
         lastnameLabel.setText(user.getLastName());
         postList.setItems(FXCollections.observableArrayList(posts));

@@ -21,17 +21,18 @@ public class CommentPageController {
 
     ArrayList<Comment> comments=new ArrayList<>();
     public void initialize() throws IOException {
-        getComments();
         listView.setItems(FXCollections.observableArrayList(comments));
         listView.setCellFactory(listView -> new CommentItem());
+        getComments();
     }
 
     public void comment(ActionEvent actionEvent) throws IOException {
+        Comment comment;
         if(!commentTextField.getText().isEmpty()){
-            Comment comment=new Comment(Main.getUser() , commentTextField.getText());
+            comment=new Comment(Main.getUser() , commentTextField.getText());
             API.addComment(comment , Main.getCommentPost());
             commentTextField.setText("");
-            initialize();
+            getComments();
         }
     }
 

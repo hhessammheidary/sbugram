@@ -13,7 +13,7 @@
       <Label fx:id="usernameLabel" layoutX="25.0" layoutY="70.0" text="username" textFill="WHITE" />
       <ImageView fx:id="profileImage" fitHeight="60.0" fitWidth="60.0" layoutX="21.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/HP/Desktop/projeAP/PngItem_1468479.png" />
+            <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/PngItem_1468479.png" />
          </image>
       </ImageView>
       <Label fx:id="titleLabel" layoutX="127.0" layoutY="29.0" prefHeight="23.0" prefWidth="81.0" text="title" textFill="WHITE">
@@ -25,7 +25,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/HP/Desktop/projeAP/LikeIcon.png" />
+                  <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/likeIcon.png" />
                </image>
             </ImageView>
          </graphic>
@@ -43,7 +43,7 @@
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/HP/Desktop/projeAP/commentIcon.png" />
+                  <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/commentIcon.png" />
                </image>
             </ImageView>
          </graphic>

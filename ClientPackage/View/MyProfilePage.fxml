@@ -16,7 +16,7 @@
             <children>
                 <ImageView fx:id="profileImage" fitHeight="100.0" fitWidth="100.0" layoutX="24.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="file:/C:/Users/HP/Desktop/projeAP/PngItem_1468479.png" />
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/PngItem_1468479.png" />
                     </image>
                 </ImageView>
                 <Label fx:id="usernameLabel" layoutX="140.0" layoutY="54.0" prefHeight="36.0" prefWidth="120.0" text="username" textFill="WHITE">
@@ -59,7 +59,7 @@
                     <graphic>
                         <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="file:/C:/Users/HP/Desktop/projeAP/homeIcon.png" />
+                                <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/homeIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -68,7 +68,7 @@
                     <graphic>
                         <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="file:/C:/Users/HP/Desktop/projeAP/postIcon.png" />
+                                <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/postIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -77,7 +77,7 @@
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/HP/Desktop/projeAP/searchIcon.png" />
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/searchIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -86,7 +86,7 @@
                     <graphic>
                         <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="file:/C:/Users/HP/Desktop/projeAP/profileIcon.png" />
+                                <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/profileIcon.png" />
                             </image>
                         </ImageView>
                     </graphic>

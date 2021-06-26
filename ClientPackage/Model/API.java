@@ -262,4 +262,13 @@ public class API {
         Map<String , Object> received= ClientToServer.sendToServer(toSend);
         return (Integer) received.get("answer");
     }
+
+    public static int getCommentNumber(String username , Post post){
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.CommentNumber);
+        toSend.put("username" , username);
+        toSend.put("post" , post);
+        Map<String , Object> received= ClientToServer.sendToServer(toSend);
+        return (Integer) received.get("answer");
+    }
 }

@@ -13,7 +13,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/HP/Desktop/projeAP/refreshIcon.png" />
+                  <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/refreshIcon.png" />
                </image>
             </ImageView>
          </graphic></Button>
@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/HP/Desktop/projeAP/homeIcon.png" />
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/homeIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/HP/Desktop/projeAP/postIcon.png" />
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/postIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -42,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/HP/Desktop/projeAP/searchIcon.png" />
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/searchIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -51,7 +51,7 @@
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/C:/Users/HP/Desktop/projeAP/profileIcon.png" />
+                        <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/profileIcon.png" />
                      </image>
                   </ImageView>
                </graphic>

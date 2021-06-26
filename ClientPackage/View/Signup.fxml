@@ -27,9 +27,9 @@
       <Button fx:id="backToLoginButton" layoutX="38.0" layoutY="505.0" mnemonicParsing="false" onAction="#backToLoginPage" prefHeight="39.0" prefWidth="78.0" style="-fx-background-color: #323232;" text="Back" textFill="WHITE" />
       <Label fx:id="usernameWarning" layoutX="146.0" layoutY="299.0" text="username isn't available" textFill="RED" visible="false" />
       <Label fx:id="passwordWarning" layoutX="146.0" layoutY="356.0" prefHeight="17.0" prefWidth="144.0" text="unsafe password,try again" textFill="RED" visible="false" />
-      <ImageView fx:id="profileImg" fitHeight="111.0" fitWidth="87.0" layoutX="107.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profileImg" fitHeight="83.0" fitWidth="87.0" layoutX="107.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/HP/Desktop/projeAP/PngItem_1468479.png" />
+            <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/PngItem_1468479.png" />
          </image>
       </ImageView>
       <Button fx:id="addProfileButton" layoutX="113.0" layoutY="106.0" mnemonicParsing="false" onAction="#addProfile" style="-fx-background-color: #323232;" text="add profile" textFill="WHITE" />

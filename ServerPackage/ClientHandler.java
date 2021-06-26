@@ -102,6 +102,9 @@ public class ClientHandler implements Runnable{
                     case GetComments:
                         answer=API.getComments(income);
                         break;
+                    case CommentNumber:
+                        answer=API.getCommentNumber(income);
+                        break;
                     case Follow:
                         answer=API.followUser(income);
                         break;
