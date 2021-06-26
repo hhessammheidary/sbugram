@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="75.0" prefWidth="285.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="101.0" prefWidth="285.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="profileImage" fitHeight="50.0" fitWidth="49.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -14,6 +14,6 @@
          </image>
       </ImageView>
       <Label fx:id="usernameLabel" layoutX="92.0" layoutY="26.0" prefHeight="17.0" prefWidth="78.0" text="username" textFill="WHITE" />
-      <Button fx:id="showProfileButton" layoutX="180.0" layoutY="20.0" mnemonicParsing="false" onAction="#showProfile" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #323232;" text="show profile" textFill="WHITE" />
+      <TextArea fx:id="commentTextArea" editable="false" layoutX="78.0" layoutY="44.0" prefHeight="49.0" prefWidth="197.0" promptText="comment" />
    </children>
 </AnchorPane>

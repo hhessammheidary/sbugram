@@ -87,6 +87,7 @@ public class EditProfileController {
         if(profileImageByteArray!=null){
             Main.setUser(API.changeProfileImage(Main.getUser().getUsername() , profileImageByteArray));
         }
+        Main.loadUser();
         new PageLoader().load("MyProfilePage");
     }
 

@@ -1,14 +1,18 @@
 package ServerPackage;
 
 import Commen.Commands;
+import Commen.Comment;
 import Commen.Post;
 import Commen.User;
+import javafx.geometry.Pos;
 
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class API {
+
+
     public static Map<String,Object> isUserNameExists(Map<String,Object> income){
 
         String usernameToCheck = (String) income.get("username");
@@ -165,6 +169,7 @@ public class API {
         for(int i=0;i<user.getPosts().size();i++){
             if(user.getPosts().get(i).equals(post)){
                 user.getPosts().get(i).likeOrDislikePost(username);
+                break;
             }
         }
         DataBaseManager.getInstance().updateDataBase();
@@ -179,11 +184,11 @@ public class API {
     public static Map<String, Object> getLikeNumber(Map<String , Object> income){
         String username = (String)income.get("username");
         Post post = (Post)income.get("post");
-        User user = Server.users.get(username);
         int likeNum=0;
-        for(int i=0;i<user.getPosts().size();i++){
-            if(user.getPosts().get(i).equals(post)){
-                likeNum=user.getPosts().get(i).likeNum();
+        for(int i=0;i<Server.users.get(username).getPosts().size();i++){
+            if(Server.users.get(username).getPosts().get(i).equals(post)){
+                likeNum=Server.users.get(username).getPosts().get(i).likeNum();
+                break;
             }
         }
         Map<String , Object> answer=new HashMap<>();
@@ -192,17 +197,51 @@ public class API {
         return answer;
     }
 
-    public static void comment(Map<String , Object> income){
+    public static Map<String, Object> addComment(Map<String , Object> income){
+        Post post = (Post)income.get("post");
+        Comment comment= (Comment)income.get("comment");
+        for(int i=0;i<Server.users.get(comment.getUserUsername()).getPosts().size();i++){
+            if(Server.users.get(comment.getUserUsername()).getPosts().get(i).equals(post)){
+                Server.users.get(comment.getUserUsername()).getPosts().get(i).comment(comment);
+                break;
+            }
+        }
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(comment.getUserUsername() + " : comment " + post.getWriter() +" post (title:" + post.getTitle() +")");
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.AddComment);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String, Object> getCommentNumber(Map<String , Object> income){
+        String username = (String)income.get("username");
+        Post post = (Post)income.get("post");
+        User user = Server.users.get(username);
+        int commentNum=0;
+        for(int i=0;i<user.getPosts().size();i++){
+            if(user.getPosts().get(i).equals(post)){
+                commentNum=user.getPosts().get(i).commentNum();
+                break;
+            }
+        }
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.CommentNumber);
+        answer.put("answer" , commentNum);
+        return answer;
     }
 
     public static Map<String, Object> repost(Map<String , Object> income){
         String username = (String)income.get("username");
         Post post = (Post)income.get("post");
         User postOwner=Server.users.get(post.getWriter());
-        Integer repostNum=0;
+
         for(int i=0;i<postOwner.getPosts().size();i++){
             if(postOwner.getPosts().get(i).equals(post)){
-                repostNum=postOwner.getPosts().get(i).repost(username);
+                postOwner.getPosts().get(i).repost(username);
+                break;
             }
         }
         Server.users.get(username).addPost(post);
@@ -211,6 +250,23 @@ public class API {
         System.out.println("time : " + LocalDateTime.now());
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.Repost);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String, Object> getRepostNumber(Map<String , Object> income){
+        String username = (String)income.get("username");
+        Post post = (Post)income.get("post");
+        User user = Server.users.get(username);
+        int repostNum=0;
+        for(int i=0;i<user.getPosts().size();i++){
+            if(user.getPosts().get(i).equals(post)){
+                repostNum=user.getPosts().get(i).repostNum();
+                break;
+            }
+        }
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.RepostNumber);
         answer.put("answer" , repostNum);
         return answer;
     }
@@ -268,6 +324,107 @@ public class API {
         Map<String , Object> answer=new HashMap<>();
         answer.put("command" , Commands.ChangePhoneNumber);
         answer.put("answer" , Server.users.get(username));
+        return answer;
+    }
+
+    public static Map<String , Object> getUser(Map<String , Object> income) {
+        String myUsername = (String)income.get("myUsername");
+        String otherUsername = (String)income.get("otherUsername");
+        boolean followOrUnFollow;//true:unfollow button visible false:follow button visible
+        User user=Server.users.get(myUsername);
+        if(user.getFollowing().contains(otherUsername)){
+            followOrUnFollow=true;
+        }
+        else {
+            followOrUnFollow=false;
+        }
+        Map<String , Object> answer = new HashMap<>();
+        answer.put("command" , Commands.GetUser);
+        answer.put("answer" , Server.users.get(otherUsername));
+        answer.put("followOrUnFollow" , followOrUnFollow);
+        return answer;
+    }
+
+    public static Map<String, Object> getUserProfile(Map<String, Object> income) {
+        String username = (String) income.get("username");
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.GetUserProfile);
+        answer.put("answer" , Server.users.get(username).getProfileImage());
+        return answer;
+    }
+
+    public static Map<String , Object> loadUser(Map<String , Object> income){
+        String username = (String) income.get("username");
+
+        Map<String , Object> answer = new HashMap<>();
+        answer.put("command" , Commands.LoadUser);
+        answer.put("answer" , Server.users.get(username));
+        return answer;
+    }
+
+    public static Map<String , Object> getComments(Map<String , Object> income){
+        Post post = (Post)income.get("post");
+        ArrayList<Comment> comments=new ArrayList<>();
+
+        for(int i=0;i<Server.users.get(post.getWriter()).getPosts().size();i++){
+            if(Server.users.get(post.getWriter()).getPosts().get(i).equals(post)){
+                comments.addAll(Server.users.get(post.getWriter()).getPosts().get(i).getComments());
+                break;
+            }
+        }
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.GetComments);
+        answer.put("answer" , comments);
+        return answer;
+    }
+
+    public static Map<String, Object> followUser(Map<String, Object> income) {
+        String myUsername=(String) income.get("myUsername");
+        String othersUsername=(String) income.get("othersUsername");
+        Server.users.get(myUsername).getFollowing().remove(othersUsername);
+        Server.users.get(othersUsername).getFollowers().remove(myUsername);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(myUsername + " : follow " +othersUsername);
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.Follow);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String, Object> UnfollowUser(Map<String, Object> income) {
+        String myUsername=(String) income.get("myUsername");
+        String othersUsername=(String) income.get("othersUsername");
+        Server.users.get(myUsername).getFollowing().remove(othersUsername);
+        Server.users.get(othersUsername).getFollowers().remove(myUsername);
+        DataBaseManager.getInstance().updateDataBase();
+        System.out.println(myUsername + " : unfollow " +othersUsername);
+        System.out.println("time : " + LocalDateTime.now());
+
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.Unfollow);
+        answer.put("answer" , Boolean.TRUE);
+        return answer;
+    }
+
+    public static Map<String, Object> getFollowerNumber(Map<String, Object> income){
+        String username=(String) income.get("username");
+        Integer followerNum=Server.users.get(username).getFollowersNum();
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.FollowerNumber);
+        answer.put("answer" , followerNum);
+        return answer;
+    }
+
+    public static Map<String, Object> getFollowingNumber(Map<String, Object> income) {
+        String username=(String) income.get("username");
+        Integer followingNum=Server.users.get(username).getFollowingsNum();
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.FollowerNumber);
+        answer.put("answer" , followingNum);
         return answer;
     }
 }

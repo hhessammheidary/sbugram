@@ -93,16 +93,20 @@ public class User implements  Serializable {
         posts.add(post);
     }
 
-    public void removePost(Post post){
-        posts.remove(post);
-    }
-
     public List<Post> getPosts() {
         return posts;
     }
 
     public List<String> getFollowers() {
         return followers;
+    }
+
+    public int getFollowersNum() {
+        return followers.size();
+    }
+
+    public int getFollowingsNum() {
+        return following.size();
     }
 
     public void follow(String username) {

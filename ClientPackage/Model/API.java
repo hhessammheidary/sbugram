@@ -1,9 +1,15 @@
 package ClientPackage.Model;
 
 import Commen.Commands;
+import Commen.Comment;
 import Commen.Post;
 import Commen.User;
+import ServerPackage.DataBaseManager;
+import ServerPackage.Server;
+import javafx.geometry.Pos;
 
+import java.rmi.MarshalledObject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,6 +88,7 @@ public class API {
         toSend.put("username" , username);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
         return (boolean) received.get("answer");
+        //to do
     }
 
     public static ArrayList<User> SearchUser(String words){
@@ -122,10 +129,34 @@ public class API {
         return (Integer) received.get("answer");
     }
 
-    public static void comment(String username , Post post){
+    public static boolean addComment(Comment comment , Post post){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.AddComment);
+        toSend.put("comment" , comment);
+        toSend.put("post" , post);
+
+        Map<String , Object> received=ClientToServer.sendToServer(toSend);
+        return (boolean) received.get("answer");
     }
 
-    public static void repost(String username , Post post){
+    public static boolean repost(String username , Post post){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.Repost);
+        toSend.put("username" , username);
+        toSend.put("post" , post);
+
+        Map<String , Object> received=ClientToServer.sendToServer(toSend);
+        return (Boolean) received.get("answer");
+    }
+
+    public static int getRepostNumber(String username , Post post){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.RepostNumber);
+        toSend.put("username" , username);
+        toSend.put("post" , post);
+
+        Map<String , Object> received=ClientToServer.sendToServer(toSend);
+        return (Integer) received.get("answer");
     }
 
     public static User changeFirstname(String username , String newFirstname){
@@ -162,5 +193,73 @@ public class API {
         toSend.put("newProfileImage" , newProfileImage);
         Map<String , Object> received = ClientToServer.sendToServer(toSend);
         return (User)received.get("answer");
+    }
+
+    public static Map<String , Object> getUser(String myUsername , String otherUsername){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.GetUser);
+        toSend.put("myUsername" , myUsername);
+        toSend.put("otherUsername" , otherUsername);
+        return ClientToServer.sendToServer(toSend);
+    }
+
+    public static byte[] getUserProfile(String username){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.GetUserProfile);
+        toSend.put("username" , username);
+
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (byte[]) received.get("answer");
+    }
+
+    public static User loadUser(String username){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.LoadUser);
+        toSend.put("username" , username);
+
+        Map<String , Object> received= ClientToServer.sendToServer(toSend);
+        return (User) received.get("answer");
+    }
+
+    public static ArrayList<Comment> getComments(Post post){
+        Map<String , Object> toSend=new HashMap<>();
+        toSend.put("command" , Commands.GetComments);
+        toSend.put("post" , post);
+
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (ArrayList<Comment>) received.get("answer");
+    }
+
+    public static Map<String, Object> followUser(String myUsername , String othersUsername) {
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.Follow);
+        toSend.put("myUsername" , myUsername);
+        toSend.put("othersUsername" , othersUsername);
+        return toSend;
+    }
+
+    public static Map<String, Object> UnfollowUser(String myUsername , String othersUsername) {
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.Unfollow);
+        toSend.put("myUsername" , myUsername);
+        toSend.put("othersUsername" , othersUsername);
+        return toSend;
+    }
+
+
+    public static int getFollowerNumber(String username){
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.FollowerNumber);
+        toSend.put("username" , username);
+        Map<String , Object> received= ClientToServer.sendToServer(toSend);
+        return (Integer) received.get("answer");
+    }
+
+    public static int getFollowingNumber(String username) {
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.FollowingNumber);
+        toSend.put("username" , username);
+        Map<String , Object> received= ClientToServer.sendToServer(toSend);
+        return (Integer) received.get("answer");
     }
 }

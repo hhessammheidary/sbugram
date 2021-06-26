@@ -1,7 +1,9 @@
 package ClientPackage.Controller;
 
+import ClientPackage.Model.Main;
 import ClientPackage.Model.PageLoader;
 import Commen.User;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,5 +30,10 @@ public class SearchedUserItemController {
             profileImage.setImage(new Image(new ByteArrayInputStream(user.getProfileImage())));
         }
         return anchorPane;
+    }
+
+    public void showProfile(ActionEvent actionEvent) throws IOException {
+        Main.setOtherUsernameToSearch(user);
+        new PageLoader().load("OthersProfilePage");
     }
 }

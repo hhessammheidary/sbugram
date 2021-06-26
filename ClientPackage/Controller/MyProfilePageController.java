@@ -34,16 +34,17 @@ public class MyProfilePageController {
 
     public ListView<Post> postList;
     public static ArrayList<Post> posts=new ArrayList<>(Main.getUser().getPosts());
+    User user;
 
     public void initialize() throws IOException {
         loadPosts();
-        User user=Main.getUser();
+        user=Main.getUser();
         if(user.getProfileImage()!=null){
             profileImage.setImage(new Image(new ByteArrayInputStream(user.getProfileImage())));
         }
         usernameLabel.setText(user.getUsername());
-        followerNumberLabel.setText(Integer.toString(user.getFollowers().size()));
-        followingNumberLabel.setText(Integer.toString(user.getFollowing().size()));
+        followerNumberLabel.setText(Integer.toString(API.getFollowerNumber(Main.getUser().getUsername())));
+        followingNumberLabel.setText(Integer.toString(API.getFollowingNumber(Main.getUser().getUsername())));
         firstnameLabel.setText(user.getName());
         lastnameLabel.setText(user.getLastName());
         postList.setItems(FXCollections.observableArrayList(posts));
@@ -60,6 +61,7 @@ public class MyProfilePageController {
         if(result.isEmpty() || result.get() == ButtonType.OK){
             API.deleteAccount(Main.getUser().getUsername());
         }
+        //to do
     }
 
     public void logout(ActionEvent actionEvent) throws IOException {

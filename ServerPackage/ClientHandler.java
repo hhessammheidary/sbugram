@@ -69,8 +69,8 @@ public class ClientHandler implements Runnable{
                     case LikeNumber:
                         answer=API.getLikeNumber(income);
                         break;
-                    case Comment:
-                        API.comment(income);
+                    case AddComment:
+                        answer=API.addComment(income);
                         break;
                     case Repost:
                         answer=API.repost(income);
@@ -86,6 +86,33 @@ public class ClientHandler implements Runnable{
                         break;
                     case ChangeProfileImage:
                         answer=API.changeProfileImage(income);
+                        break;
+                    case GetUser:
+                        answer=API.getUser(income);
+                        break;
+                    case RepostNumber:
+                        answer=API.getRepostNumber(income);
+                        break;
+                    case GetUserProfile:
+                        answer=API.getUserProfile(income);
+                        break;
+                    case LoadUser:
+                        answer=API.loadUser(income);
+                        break;
+                    case GetComments:
+                        answer=API.getComments(income);
+                        break;
+                    case Follow:
+                        answer=API.followUser(income);
+                        break;
+                    case Unfollow:
+                        answer=API.UnfollowUser(income);
+                        break;
+                    case FollowerNumber:
+                        answer=API.getFollowerNumber(income);
+                        break;
+                    case FollowingNumber:
+                        answer=API.getFollowingNumber(income);
                         break;
                 }
                 socketOut.writeObject(answer);

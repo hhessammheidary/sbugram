@@ -22,7 +22,7 @@ public class Post implements Serializable , Comparable {
     private final LocalDate date;
     private Vector<String> likes=new Vector<>();
     private Vector<String> reposts=new Vector<>();
-    private Map<String , Comment> comments=new ConcurrentHashMap<>();
+    private Vector<Comment> comments=new Vector<>();
     private boolean isRepost=false;
     private byte[] postImageByteArray;
 
@@ -68,13 +68,24 @@ public class Post implements Serializable , Comparable {
         return likes.size();
     }
 
-    public Integer repost(String username) {
+    public void repost(String username) {
         reposts.add(username);
+    }
+
+    public int repostNum(){
         return reposts.size();
     }
 
-    public void comment(String username , Comment comment) {
-        comments.put(username , comment);
+    public void comment(Comment comment) {
+        comments.add(comment);
+    }
+
+    public int commentNum(){
+        return comments.size();
+    }
+
+    public Vector<Comment> getComments() {
+        return comments;
     }
 
     public byte[]  getPostImageByteArray() {

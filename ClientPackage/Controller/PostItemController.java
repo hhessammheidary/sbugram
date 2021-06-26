@@ -47,9 +47,14 @@ public class PostItemController {
         titleLabel.setText(post.getTitle());
         description.setText(post.getDescription());
         likeNumberLabel.setText(String.valueOf(API.getLikeNumber(post.getWriter() , post)));
+        repostNumberLabel.setText(String.valueOf(API.getRepostNumber(post.getWriter() , post)));
         if(post.getPostImageByteArray()!=null){
             postImage.setImage(new Image(new ByteArrayInputStream(post.getPostImageByteArray())));
         }
+        if(API.getUserProfile(post.getWriter())!=null){
+            profileImage.setImage(new Image(new ByteArrayInputStream(API.getUserProfile(post.getWriter()))));
+        }
+
         /*LocalDate dateTime = post.getDate();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateAsString = dateFormat.format(dateTime);
@@ -64,13 +69,17 @@ public class PostItemController {
     }
 
     public void likePost(ActionEvent actionEvent) {
-        API.like(post.getWriter() , post);
+        API.like(Main.getUser().getUsername() , post);
         likeNumberLabel.setText(String.valueOf(API.getLikeNumber(post.getWriter() , post)));
     }
 
     public void repostPost(ActionEvent actionEvent) {
+        API.repost(Main.getUser().getUsername() , post);
+        repostNumberLabel.setText(String.valueOf(API.getRepostNumber(post.getWriter() , post)));
     }
 
-    public void comment(ActionEvent actionEvent) {
+    public void comment(ActionEvent actionEvent) throws IOException {
+        Main.setCommentPost(post);
+        new PageLoader().load("CommentPage");
     }
 }
