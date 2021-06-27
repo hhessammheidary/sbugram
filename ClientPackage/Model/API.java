@@ -273,4 +273,14 @@ public class API {
         Map<String , Object> received= ClientToServer.sendToServer(toSend);
         return (Integer) received.get("answer");
     }
+
+    public static User getUserWithUsername(String username){
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.GetUserWithUsername);
+        toSend.put("username" , username);
+
+        Map<String , Object> received= ClientToServer.sendToServer(toSend);
+        return (User) received.get("answer");
+    }
+
 }

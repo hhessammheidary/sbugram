@@ -36,6 +36,7 @@ public class PostItemController {
     public Button likePostButton;
     public Button repostButton;
     public Button commentButton;
+    public Button showProfileButton;
 
     public PostItemController(Post post) throws IOException {
         new PageLoader().load("PostItem" , this);
@@ -82,5 +83,10 @@ public class PostItemController {
     public void comment(ActionEvent actionEvent) throws IOException {
         Main.setCommentPost(post);
         new PageLoader().load("CommentPage");
+    }
+
+    public void showProfile(ActionEvent actionEvent) throws IOException{
+        Main.setOtherUsernameToSearch(API.getUserWithUsername(post.getWriter()));
+        new PageLoader().load("OthersProfilePage");
     }
 }

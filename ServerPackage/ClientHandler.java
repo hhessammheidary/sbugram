@@ -32,7 +32,7 @@ public class ClientHandler implements Runnable{
                 income = (Map<String,Object>) socketIn.readObject();
                 Map<String,Object> answer = null;
                 Commands command = (Commands) income.get("command");
-                switch(command){
+                switch(command){//take message from client and handle it and send answer from server
                     case IsUsernameUnique:
                         answer = API.isUserNameExists(income);
                         break;
@@ -117,6 +117,9 @@ public class ClientHandler implements Runnable{
                     case FollowingNumber:
                         answer=API.getFollowingNumber(income);
                         break;
+                    case GetUserWithUsername:
+                        answer=API.getUserWithUsername(income);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();
@@ -132,7 +135,7 @@ public class ClientHandler implements Runnable{
             }
 
         }
-        // after logout!
+        // after logout
         try {
             socketIn.close();
             socketOut.close();

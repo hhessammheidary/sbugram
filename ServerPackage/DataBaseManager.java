@@ -8,7 +8,7 @@ import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DataBaseManager {
-    public static final String userFile="C:\\Users\\HP\\Desktop\\projeAP\\src\\DataBase\\UserDataBase.bin";
+    public static final String userFile="C:\\Users\\HP\\Desktop\\projeAP\\src\\DataBase\\UserDataBase.bin";//database address
     public static DataBaseManager dataBaseManager=new DataBaseManager();
     //only way to use this class is this method
     public static DataBaseManager getInstance(){
@@ -19,6 +19,7 @@ public class DataBaseManager {
         try {
             FileInputStream fileInputStream=new FileInputStream(DataBaseManager.userFile);
             ObjectInputStream objectInputStream=new ObjectInputStream(fileInputStream);
+            //get users data from server and save it in database file
             Server.users = new ConcurrentHashMap<>((ConcurrentHashMap<String, User>)objectInputStream.readObject());
             objectInputStream.close();
             fileInputStream.close();
@@ -29,8 +30,8 @@ public class DataBaseManager {
             e.printStackTrace();
         }
     }
-    //update post and profile
-    //synchronized cuz multithread issues
+    //update profile
+    //synchronized cuz multi thread issues
     public synchronized void updateDataBase(){
         try {
             FileOutputStream fileOutputStream1 = new FileOutputStream(userFile);

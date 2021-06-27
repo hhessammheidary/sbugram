@@ -427,4 +427,14 @@ public class API {
         answer.put("answer" , followingNum);
         return answer;
     }
+
+    public static Map<String, Object> getUserWithUsername(Map<String, Object> income){
+        String username=(String) income.get("username");
+        User user=Server.users.get(username);
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.GetUserWithUsername);
+        answer.put("answer" , user);
+        return answer;
+
+    }
 }
