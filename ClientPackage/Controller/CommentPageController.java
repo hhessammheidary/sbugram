@@ -21,9 +21,9 @@ public class CommentPageController {
 
     ArrayList<Comment> comments=new ArrayList<>();
     public void initialize() throws IOException {
+        getComments();
         listView.setItems(FXCollections.observableArrayList(comments));
         listView.setCellFactory(listView -> new CommentItem());
-        getComments();
     }
 
     public void comment(ActionEvent actionEvent) throws IOException {
@@ -32,7 +32,7 @@ public class CommentPageController {
             comment=new Comment(Main.getUser() , commentTextField.getText());
             API.addComment(comment , Main.getCommentPost());
             commentTextField.setText("");
-            getComments();
+            initialize();
         }
     }
 

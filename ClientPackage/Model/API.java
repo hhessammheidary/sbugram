@@ -230,20 +230,22 @@ public class API {
         return (ArrayList<Comment>) received.get("answer");
     }
 
-    public static Map<String, Object> followUser(String myUsername , String othersUsername) {
+    public static boolean followUser(String myUsername , String othersUsername) {
         Map<String , Object> toSend= new HashMap<>();
         toSend.put("command" , Commands.Follow);
         toSend.put("myUsername" , myUsername);
         toSend.put("othersUsername" , othersUsername);
-        return toSend;
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (boolean) received.get("answer");
     }
 
-    public static Map<String, Object> UnfollowUser(String myUsername , String othersUsername) {
+    public static boolean UnfollowUser(String myUsername , String othersUsername) {
         Map<String , Object> toSend= new HashMap<>();
         toSend.put("command" , Commands.Unfollow);
         toSend.put("myUsername" , myUsername);
         toSend.put("othersUsername" , othersUsername);
-        return toSend;
+        Map<String , Object> received = ClientToServer.sendToServer(toSend);
+        return (boolean) received.get("answer");
     }
 
 

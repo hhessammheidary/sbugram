@@ -48,8 +48,7 @@
             <Label layoutX="40.0" layoutY="222.0" text="Lastname:" textFill="WHITE" />
             <Label fx:id="firstnameLabel" layoutX="110.0" layoutY="202.0" text="Label" textFill="WHITE" />
             <Label fx:id="lastnameLabel" layoutX="110.0" layoutY="222.0" text="Label" textFill="WHITE" />
-            <Button fx:id="follow" layoutX="99.0" layoutY="247.0" mnemonicParsing="false" onAction="#followUser" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #323232;" text="follow" textFill="WHITE" visible="false" />
-            <Button fx:id="unfollow" layoutX="99.0" layoutY="247.0" mnemonicParsing="false" onAction="#unfollowUser" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #323232;" text="unfollow" textFill="WHITE" visible="false" />
+            <Button fx:id="followOrUnfollowButton" layoutX="99.0" layoutY="247.0" mnemonicParsing="false" onAction="#followOrUnfollowUser" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #323232;" text="follow" textFill="WHITE" />
          </children>
       </AnchorPane>
       <ListView fx:id="postList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="238.0" prefWidth="300.0" />

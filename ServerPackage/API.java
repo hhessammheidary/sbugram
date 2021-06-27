@@ -383,8 +383,8 @@ public class API {
     public static Map<String, Object> followUser(Map<String, Object> income) {
         String myUsername=(String) income.get("myUsername");
         String othersUsername=(String) income.get("othersUsername");
-        Server.users.get(myUsername).getFollowing().remove(othersUsername);
-        Server.users.get(othersUsername).getFollowers().remove(myUsername);
+        Server.users.get(myUsername).getFollowing().add(othersUsername);
+        Server.users.get(othersUsername).getFollowers().add(myUsername);
         DataBaseManager.getInstance().updateDataBase();
         System.out.println(myUsername + " : follow " +othersUsername);
         System.out.println("time : " + LocalDateTime.now());

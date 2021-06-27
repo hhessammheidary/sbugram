@@ -29,8 +29,7 @@ public class OthersProfilePageController {
     public Button addPostButton;
     public Button searchPageButton;
     public Button profileButton;
-    public Button follow;
-    public Button unfollow;
+    public Button followOrUnfollowButton;
     public ListView<Post> postList;
 
     User user;
@@ -41,14 +40,12 @@ public class OthersProfilePageController {
         Map<String , Object> received = API.getUser(Main.getUser().getUsername() , Main.otherUsernameToSearch.getUsername());
         user=(User) received.get("answer");
         loadPosts();
-        boolean followOrUnFollow=(Boolean) received.get("followOrUnFollow");
-        if (followOrUnFollow) {
-            unfollow.setVisible(true);
-            follow.setVisible(false);
+        boolean followOrUnfollow=(Boolean) received.get("followOrUnFollow");
+        if (followOrUnfollow) {
+            followOrUnfollowButton.setText("unfollow");
         }
         else {
-            unfollow.setVisible(false);
-            follow.setVisible(true);
+            followOrUnfollowButton.setText("follow");
         }
         if(user.getProfileImage()!=null){
             profileImage.setImage(new Image(new ByteArrayInputStream(user.getProfileImage())));
@@ -78,15 +75,19 @@ public class OthersProfilePageController {
         new PageLoader().load("MyProfilePage");
     }
 
-    public void followUser(ActionEvent actionEvent) {
-        API.followUser(Main.getUser().getUsername() , Main.getOtherUsernameToSearch().getUsername());
-    }
-
-    public void unfollowUser(ActionEvent actionEvent) {
-        API.UnfollowUser(Main.getUser().getUsername() , Main.getOtherUsernameToSearch().getUsername());
-    }
-
     public void loadPosts(){
         posts = API.getUserPosts(user.getUsername());
+    }
+
+    public void followOrUnfollowUser(ActionEvent actionEvent) throws IOException {
+        if(followOrUnfollowButton.getText().equals("follow")){
+            API.followUser(Main.getUser().getUsername() , Main.getOtherUsernameToSearch().getUsername());
+            followOrUnfollowButton.setText("unfollow");
+        }
+        else {
+            API.UnfollowUser(Main.getUser().getUsername() , Main.getOtherUsernameToSearch().getUsername());
+            followerNumberLabel.setText("follow");
+        }
+        initialize();
     }
 }

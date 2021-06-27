@@ -6,14 +6,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="101.0" prefWidth="285.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="285.0" style="-fx-background-color: #001701;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="profileImage" fitHeight="50.0" fitWidth="49.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profileImage" fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/HP/Desktop/projeAP/src/icons/PngItem_1468479.png" />
          </image>
       </ImageView>
-      <Label fx:id="usernameLabel" layoutX="92.0" layoutY="26.0" prefHeight="17.0" prefWidth="78.0" text="username" textFill="WHITE" />
-      <TextArea fx:id="commentTextArea" editable="false" layoutX="78.0" layoutY="44.0" prefHeight="49.0" prefWidth="197.0" promptText="comment" />
+      <Label fx:id="usernameLabel" layoutX="83.0" layoutY="20.0" prefHeight="17.0" prefWidth="101.0" text="username" textFill="WHITE" />
+      <TextArea fx:id="commentTextArea" layoutX="79.0" layoutY="44.0" prefHeight="43.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
